@@ -1,0 +1,129 @@
+/**
+	/* Factor directory support.
+*/
+@charset "utf-8";
+
+div[class="if.vertical.sequence"]
+div[class="if.item"]
+{
+	height: 1.3em;
+	background-color: rgba(100, 100, 100, 0.3);
+	border-style: solid;
+	border-width: 1px;
+	margin-bottom: 6px;
+	padding-left: 4px;
+	padding: 4px;
+	padding-top: 6px;
+	box-shadow: inset 0 0 4px #000000;
+	border-color: rgba(150,150,150,0.4);
+
+	vertical-align: middle;
+	white-space: nowrap;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+div[class="if.vertical.sequence"]
+div[class="if.item"]:hover {
+	border-color: #4499EA;
+	box-shadow: none;
+	background-color: #4499EA;
+	background: linear-gradient(135deg, rgba(100,173,229,0.5) 0%,rgba(41,137,216,0.4) 18%,rgba(30,87,153,0.2) 100%);
+}
+
+div[class="if.vertical.sequence"]
+div[class="if.item"] > div.icon,
+div[class="if.vertical.sequence"]
+div[class="if.item"] > div.abstract,
+div[class="if.vertical.sequence"]
+div[class="if.item"] > div.label
+{
+	display: table-cell;
+}
+
+/* Descriptive superscript used to qualify the item. */
+div[class="if.vertical.sequence"]
+div[class="if.item"] > div.label > span.post
+{
+	display: inline-block;
+	font-size: 32%;
+	vertical-align: top;
+}
+
+div[class="if.vertical.sequence"]
+a[class="error.source"]
+div[class="if.item"] > div.label > span.post:after
+{
+	content: "\26D4";
+	margin-left: 0.2em;
+}
+
+div[class="if.vertical.sequence"]
+a[class~="warning.source"]
+div[class="if.item"] > div.label > span.post:after
+{
+	content: "\26A0";
+	margin-left: 0.2em;
+}
+
+div[class="if.vertical.sequence"]
+div[class="if.item"] > div.icon {
+	width: 1.4em;
+	min-width: 1.4em;
+	max-width: 1.4em;
+
+	text-align: center;
+	overflow: hidden;
+}
+
+div[class="if.vertical.sequence"]
+div[class="if.item"] > div.label {
+	margin-left: 0.2em;
+	min-width: 2em;
+	vertical-align: middle;
+}
+
+div[class="if.vertical.sequence"]
+div[class="if.item"] > div.abstract {
+	color: rgba(175,175,175,1);
+	width: 100%;
+	font-size: 80%;
+
+	vertical-align: middle;
+	text-align: right;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	padding-left: 2em;
+}
+
+div[class="if.vertical.sequence"]
+	div[class="if.item"] > div.label > span.identifier
+{
+	color: rgba(200,200,200,1);
+	/*text-shadow:
+		0px 2px 0px #000000,
+		0px 2px 0px #000000;*/
+
+	font-family: 'Montserrat', sans-serif;
+	font-size: smaller;
+
+	margin-left: 0.2em;
+}
+
+div[class="html.clear"]
+{
+	clear: both;
+}
+
+span[class="parenthesis"]:before
+{
+	content: '(';
+}
+
+span[class="parenthesis"]:after
+{
+	content: ')';
+}

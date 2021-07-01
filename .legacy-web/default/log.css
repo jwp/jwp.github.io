@@ -1,0 +1,137 @@
+/**
+	# Reference log showing iframes to links alongside the main content.
+*/
+@charset "utf-8";
+
+body > main {
+	/*
+	position: fixed;
+	height: 100%;
+	top: calc(1cm + 10px);
+	height: calc(100% - (1cm + 10px));
+	*/
+}
+
+/*
+	# Override width when the JavaScript identifies
+	# the HTML as being presented inside of an iframe.
+*/
+body.iframe > main {
+	width: 100%;
+	max-width: 100%;
+}
+
+/*
+	# Don't show the log when iframed; force the user to
+	# adjust the primary focus in order to see details in order to
+	# avoid arbitrary nesting.
+*/
+body.iframe > div[id="log."] {
+	display: none;
+}
+
+/*
+	# Selection (hash tag) Description
+*/
+div[id="log."] {
+	background: black;
+
+	left: calc(45% - 4px);
+	right: 0;
+	width: auto;
+	margin-left: 4px; /* compensate for scrollbar padding */
+	margin-bottom: 2em;
+
+	padding: 0.5em;
+	padding-left: 0;
+
+	z-index: 8;
+	overflow: scroll;
+}
+
+div[id="log."] > div.new {
+	background: white;
+}
+
+div[id="log."] > div {
+	position: relative;
+	width: auto;
+	border: 1px solid #5e5e5e;
+	padding: 0.5em;
+	border-radius: 0.25em;
+	padding-left: 2em;
+	padding-right: 2em;
+	margin-left: 4px;
+	margin-right: 1em;
+	margin-top: 1em;
+	background: rgba(120,120,120,0.3);
+
+	transition-duration: 500ms;
+	transition-property: background;
+	transition-timing-function: linear;
+}
+
+div[id="log."] > div.entry > div[class="icon"] {
+	cursor: context-menu;
+	position: absolute;
+	z-index: 1;
+	top: 8px;
+	left: 8px;
+
+	font-size: 2em;
+	width: 1cm;
+	height: 1cm;
+
+	user-select: none;
+}
+
+div[id="log."] > div.entry > iframe {
+	height: 16cm;
+	max-height: 32cm;
+	width: 100%;
+
+	box-shadow: inset 0 0 16px #000;
+
+	border-width: 1px;
+	border-color: rgba(100,100,100,.3);
+	border-style: solid;
+
+	margin: 1em;
+	margin-top: 1.5em;
+
+	overflow: scroll;
+}
+
+div[id="log."] > div.entry > div[class="fragment.address"] {
+	font-family: monospace;
+	margin-left: 1em;
+}
+
+div[id="log."] > div.entry > div[class="title"] {
+	margin-left: 1em;
+}
+
+div[class="log..actions"] {
+	user-select: none;
+	position: absolute;
+	right: 8px;
+	top: 0;
+}
+
+div[class="log..actions"]>span.close {
+	margin-left: 2px;
+}
+
+div[class="log..actions"]>span.close:hover {
+	cursor: pointer;
+	text-shadow:
+		0px 3px 6px rgba(0,0,0,1),
+		0px 3px 6px rgba(0,0,0,1);
+}
+
+div[class="log..actions"]>span.shrink:hover {
+	cursor: pointer;
+	text-shadow:
+		0px 3px 6px rgba(0,0,0,1),
+		0px 3px 6px rgba(0,0,0,1);
+}

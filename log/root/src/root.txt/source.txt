@@ -1,0 +1,10 @@
+Collection of projects, thoughts, notes, and references.
+Concision is applied here. Documents may be updated.
+
+[ Entries ]
+
+/(titled)&.mechanics.shell-patterns/
+	- (time-context)`2023-02-17`
+
+	My shell scripts probably look strange to most eyes.
+	A small set of protocols that I often employ when writing POSIX shell.

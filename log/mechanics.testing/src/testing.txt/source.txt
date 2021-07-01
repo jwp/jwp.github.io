@@ -1,0 +1,25 @@
+! CONTEXT:
+	/title/
+		`Repeatable Function Analysis`
+
+The use of abstract devices (programs) does not require that associated tests
+be available in order for it to function. However, the absence of tests can
+make construction extraordinarily difficult when the device reaches a certain level of
+complexity as tracking the working state of features becomes increasingly taxing.
+
+[ Evidence ]
+
+The purpose of testing software is the production of evidence to support the assertion that the
+implemented feature set is working as it is intended.
+
+Testing programs, unit and integration, are created to make this evidence reproducible by
+the author and by other users.
+
+Reproducibility of evidence is of notable importance when the software may be
+used in environments that were not anticipated by or available to the author.
+
+[ By Any Other Name ]
+
+Essentially, the
+&<https://en.wikipedia.org/wiki/Scientific_method[scientific method]>
+applied to software.

@@ -1,0 +1,21 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (source/area)``
+[ Blends ]
+
+/Garam Masala/
+	- (control/type)`spice`
+	- Coriander
+	- Cumin
+	- Cinnamon
+	- Black Pepper
+	- Cloves
+	- Ginger
+	- Mace
+	- Green Cardamom
+	- Black Cardamom
+	- Nutmeg
+	- Bay Leaves
+	

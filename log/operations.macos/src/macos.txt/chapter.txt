@@ -1,0 +1,22 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (source/area)``
+[ Defaults ]
+
+/`defaults write -g`/#!text
+	ApplePressAndHoldEnabled -bool false
+	InitialKeyRepeat -int 9
+	KeyRepeat -int 1
+	NSAutomaticCapitalizationEnabled -bool false
+	NSDocumentSaveNewDocumentsToCloud -bool false
+	com.apple.screencapture disable-shadow -bool true
+	
+/`defaults write com.apple.DiskUtility`/#!text
+	DUDebugMenuEnabled -bool true
+	advanced-image-options -bool true
+	
+/`defaults write com.apple.terminal`/#!text
+	SecureKeyboardEntry -bool true
+	

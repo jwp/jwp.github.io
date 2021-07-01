@@ -1,0 +1,7 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (source/area)``
+Notes on virtualization solutions for developer routines (test automation).
+
