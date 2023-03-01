@@ -1,9 +1,31 @@
 Collection of projects, thoughts, notes, and references.
-Concision is applied here. Documents may be updated.
+
+Much of the content here is an experiment evaluating factor representations as a means
+for managing a knowledge base or web log.
+
+I am looking for work. Something without the psychological abuse would be super.
 
 [ Entries ]
 
+! CONTROL:
+	/type/
+		`journal`
+
+/(titled)&.mechanics.which-command-v/
+	- (control)`property-set`
+	- (time-context)`2023-04-07`
+
+	`command -v` is the right method in some cases, but there are unwanted
+	features when probing systems for *executable files*.
+
+/(titled)&.mechanics.legacy-http/
+	- (control)`property-set`
+	- (time-context)`2023-04-06`
+
+	What is to come of text mode HTTP?
+
 /(titled)&.mechanics.shell-patterns/
+	- (control)`property-set`
 	- (time-context)`2023-02-17`
 
 	My shell scripts probably look strange to most eyes.

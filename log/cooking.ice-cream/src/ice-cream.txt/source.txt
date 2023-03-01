@@ -2,6 +2,8 @@ Notes and links for making ice cream.
 
 [ Ingredients ]
 
+Overview of common ingredients or categories.
+
 - (control/type)`ingredient`
 - Cream
 - Milk

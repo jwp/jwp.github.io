@@ -1,0 +1,40 @@
+! CONTEXT:
+	/title/
+		`Python Syntax Protocols`
+
+Currently, this is more of a description of style preferences than useful patterns.
+
+[ Triple Quoted Documentation ]
+
+Python allows regular, single quoted, strings to be used as doc-strings.
+By strictly using triple quote form with multiple lines, line processing tools
+may be able to identify doc-strings without additional, more difficult, cases
+in the patterns.
+
+[ Single Quoted Identifiers ]
+
+When working with string identifiers of any sort, primarily use single quotes to simplify
+substitution. Arguably, use single quotes when working with constants that appear multiple times.
+
+The goal being to allow global substitutions to be performed unambiguously. By
+using double quoted form with non-identifier strings, substitutions can be matched
+to those strings that are intended to be identifiers.
+
+[ Commented Documentation Strings ]
+
+While not useful with most modern tooling, line commenting doc-string content is useful
+with naive text editors that only support line scoped syntax highlighting.
+For these editors, commenting non-code portions of the doc-string allows highlighting
+to be performed on code samples within the documentation. Additionally, this can aid
+in extracting code samples from documentation.
+
+Modern tooling may recognize code portions using some explicit syntactic signalling. This
+method is similar, but is targeted at naive editors.
+
+[ PEP Indentation Obstinacy ]
+
+Tabs. Use tabs. Vector graphics versus Rasterized.
+One indentation level, one (tab) character. No ambiguity resolution required.
+
+However, when dealing with excerpts where formatting and positioning is
+unknown, translation to spaces may be necessary.

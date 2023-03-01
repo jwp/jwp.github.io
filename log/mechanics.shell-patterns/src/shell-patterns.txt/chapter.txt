@@ -94,3 +94,8 @@ A common cure for this was to include a constant prefix on strings where accepta
 	
 This is only useful when trying to maximize the portability of a script.
 
+[ Modern Tooling ]
+
+/Linters/
+	- &<https://shellcheck.net>
+	

@@ -1,0 +1,35 @@
+! CONTEXT:
+	/title/
+		`Legacy HTTP Versions`
+
+The new versions of HTTP offer the question "What is to come of HTTP 1.1?".
+It is possible that legacy HTTP remains open and usable with server proxies maintaining
+all versions, or that client proxies transparently lift old versions to newer ones
+when the server chooses not to support text mode. Or both for the greatest durability.
+
+The expectation of clients to wholly abandon text mode is asking much in the short term,
+and when the needs of a client are minimal, text mode offers more than enough functionality
+to accommodate. Dependency-free operability is superb in the case of bootstrapping software,
+and text mode makes that trivial when it comes to HTTP.
+
+However, if text mode is to be kept, should it not be updated? HTTP 1.1 has some sharp edges
+when it comes to message framing, and a revision could help eliminate those issues.
+
+[ CONTINUE Responses ]
+
+The `CONTINUE` response introduces request-response imbalance.
+
+- &<https://support.airship.com/hc/en-us/articles/213492003--Expect-100-Continue-Issues-and-Risks>
+
+[ HEAD Requests ]
+
+The `HEAD` request requires that clients share state between transmit and receive pipelines.
+That is, the response to a `HEAD` request should be the same response as a `GET` request to
+the same resource *except* that it must not contain an entity body. A client needs
+to reconsider `Content-Length` and other entity body related headers as there is no
+entity body.
+
+[ Quirk Preservation ]
+
+Quirks are sometimes romanticized. Would it be preferrable to love the irritants
+than eliminate them?

@@ -3,20 +3,182 @@
 		factor
 	/element/
 		- (source/area)``
+[ Recall ]
+
+[ > Set Hostname ]
+
+#!syntax/shell
+	# Also, ComputerName and LocalHostName.
+	scutil –-set HostName "host.name"
+	
+[ > Code Signatures ]
+
+Enable or disable checks:
+
+#!syntax/shell
+	spctl --master-disable
+	spctl --master-enable
+	
+Signing:
+
+#!syntax/shell
+	codesign -f -s - "/path/to/executable"
+	
 [ Defaults ]
 
-/`defaults write -g`/#!text
-	ApplePressAndHoldEnabled -bool false
-	InitialKeyRepeat -int 9
-	KeyRepeat -int 1
-	NSAutomaticCapitalizationEnabled -bool false
-	NSDocumentSaveNewDocumentsToCloud -bool false
-	com.apple.screencapture disable-shadow -bool true
+/Globals/#!syntax/shell
+	defaults write -g \
+		ApplePressAndHoldEnabled -bool false \
+		InitialKeyRepeat -int 9 \
+		KeyRepeat -int 1 \
+		NSAutomaticCapitalizationEnabled -bool false \
+		NSDocumentSaveNewDocumentsToCloud -bool false \
+		com.apple.screencapture disable-shadow -bool true \
 	
-/`defaults write com.apple.DiskUtility`/#!text
-	DUDebugMenuEnabled -bool true
-	advanced-image-options -bool true
+/DiskUtility/#!syntax/shell
+	defaults write com.apple.DiskUtility \
+		DUDebugMenuEnabled -bool true \
+		advanced-image-options -bool true \
 	
-/`defaults write com.apple.terminal`/#!text
-	SecureKeyboardEntry -bool true
+/Terminal/#!syntax/shell
+	defaults write com.apple.terminal \
+		SecureKeyboardEntry -bool true
 	
+[ Bluetooth Bitpool ]
+
+#!syntax/shell
+	for x in
+		"Apple Bitpool Max (editable)"
+		"Apple Bitpool Min (editable)"
+		"Apple Initial Bitpool (editable)"
+		"Apple Initial Bitpool Min (editable)"
+		"Negotiated Bitpool"
+		"Negotiated Bitpool Max"
+		"Negotiated Bitpool Min"
+	do
+		defaults write com.apple.BluetoothAudioAgent "$x" -int 40
+	done
+	
+[ LLVM ]
+
+On macOS, using the pre-built clang binary has a header conflict (10.15).
+In order to avoid the issue, the system headers need to be re-ordered:
+
+#!syntax/shell
+	-isystem/opt/llvm/include
+	-isystem/opt/llvm/include/c++/v1
+	-isystem/opt/llvm/lib/clang/15.0.0/include
+	
+Where (system/directory)`/opt/llvm` is the installation prefix.
+
+/(control/context)`Issues`/
+	# &<https://stackoverflow.com/questions/58628377/catalina-c-using-cmath-headers-yield-error-no-member-named-signbit-in-th>
+	
+[ Python ]
+
+! CONTROL:
+	/type/
+		`filesystem`
+
+	/location/
+		`/Library/Frameworks/Python.framework/Versions`
+
+Scripts for maintaining a set of Python installations on macOS.
+Presumed location: `/Library/Frameworks/Python.framework/Versions`.
+
+/ftp-versions.sh/#!syntax/shell
+	#!/bin/sh
+	# Get the unique set of 3.x versions from python.org/ftp/python/
+	
+	MAJOR=3
+	ENL='\
+	'
+	curl -s https://www.python.org/ftp/python/ | \
+		sed "s/[<>]/$ENL/g" | \
+		grep href | \
+		grep -o '\<'"$MAJOR"'\.[0-9]\+\.[0-9]\+\>' | \
+		sort -u
+	
+/download-versions.sh/#!syntax/shell
+	#!/bin/sh
+	# Get the unique set of 3.x (>3.6) versions from python.org/downloads/
+	
+	MAJOR=3
+	ENL='\
+	'
+	curl -s 'https://www.python.org/downloads/' | \
+		sed "s/<>/$ENL/g" | \
+		grep -o '\<'"$MAJOR"'\.\([6-9]\|[0-9][0-9]\+\)\.[0-9]\+\>' | \
+		sort -u
+	
+/latest-versions.sh/#!syntax/shell
+	#!/bin/sh
+	# Find the latest release for each major and minor.
+	
+	sort -t'.' -k1,2 -k3nr | sort -u -t'.' -k1,2 | sort -t'.' -k1nr -k2nr
+	
+/installed.sh/#!syntax/shell
+	#!/bin/sh
+	for x in 3.*/
+	do
+		$x/bin/python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
+	done | sort -t'.' -k1nr -k2nr
+	
+/delta.sh/#!syntax/shell
+	#!/bin/sh
+	# Get the Python versions that need to be updated.
+	
+	cd /Library/Frameworks/Python.framework/Versions
+	./download-versions.sh | ./latest-versions.sh
+	
+/integrate.sh/#!syntax/shell
+	#!/bin/sh
+	# Build and install Python from source (pwd) on macOS.
+	# Presumes write permissions on &<file:///Library/Frameworks/Python.framework/Versions>.
+	export DYLD_LIBRARY_PATH=/usr/local/lib
+	export CC="$(xcrun --toolchain XcodeDefault -f clang)"
+	export SDK="$(xcrun --show-sdk-path)"
+	
+	XCPATH="$(xcode-select --print-path)"
+	MAC="$XCPATH/Platforms/MacOSX.platform"
+	XCI="$MAC/Developer/SDKs/MacOSX.sdk/usr/include"
+	
+	# -isystem is important; -I will (sometimes) put macOS' expat ahead of Python's.
+	CFLAGS="-F$SDK/System/Library/Frameworks -isystem$XCI"
+	CFLAGS="$CFLAGS -include TargetConditionals.h"
+	CFLAGS="$CFLAGS -Wno-nullability-completeness -Wno-expansion-to-defined"
+	export CFLAGS
+	
+	if ! : Possible LTO version mismatch.
+	then
+		export CC=/opt/llvm/bin/clang
+		export PATH=/opt/llvm/bin:$PATH
+	fi
+	
+	./configure \
+		--disable-test-modules \
+		--with-lto \
+		--without-doc-strings \
+		--with-computed-gotos \
+		--with-openssl=/usr/local \
+		--enable-optimizations \
+		--enable-framework || exit
+	
+	gmake -j 8 || exit
+	gmake install || exit
+/update.sh/#!syntax/shell
+	#!/bin/sh
+	# Update pip and site-packages of each installed version using pip.
+	echo $(pwd)
+	for x in *.*/
+	do
+		PIP="$x/bin/python3 -m pip"
+		echo "-> $PIP"
+		$PIP install -U pip || exit
+		$PIP list --outdated --format=json | jq -r '.[]|.name' | $PIP install -U -r /dev/stdin || exit
+	done
+	
+[ 10.15 ]
+
+&<https://apps.apple.com/us/app/macos-catalina/id1466841314>
+

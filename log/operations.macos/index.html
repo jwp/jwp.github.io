@@ -1,11 +1,111 @@
-<html><head><title>jwp.log.operations.macos</title><meta charset="utf-8"/><link as="style" rel="preload" href="../../.legacy-web/core.css"></link><link as="style" rel="preload" href="../../.legacy-web/factor.css"></link><link rel="stylesheet" href="../../.legacy-web/core.css"></link><link rel="stylesheet" href="../../.legacy-web/factor.css"></link></head><body><main><h1><div class="parallel"><div class="left"></div><div class="right"></div></div><span class="prefix"></span><span class="title">jwp.log.operations.macos</span><span class="factor-type">http://if.fault.io/factors/meta.chapter</span></h1><div class="text.abstract"></div><section class="unspecified" documented="true" local-identifier="Defaults" id="Defaults"><h1><div class="parallel"><div class="left"></div><div class="right"></div></div><span class="prefix"></span><a class="title" href="#Defaults"><span class="text.normal">Defaults</span></a><span class="abstract-type"></span></h1><dl class="text.mapping"><div id="Defaults.defaults-write--g" documented="true"><dt><a class="dkn" href="#Defaults.defaults-write--g"></a><code class="">defaults write -g</code></dt><dd><pre class="text.syntax"><code>ApplePressAndHoldEnabled -bool false
-InitialKeyRepeat -int 9
-KeyRepeat -int 1
-NSAutomaticCapitalizationEnabled -bool false
-NSDocumentSaveNewDocumentsToCloud -bool false
-com.apple.screencapture disable-shadow -bool true
-</code></pre></dd></div><div id="Defaults.defaults-write-com.apple.DiskUtility" documented="true"><dt><a class="dkn" href="#Defaults.defaults-write-com.apple.DiskUtility"></a><code class="">defaults write com.apple.DiskUtility</code></dt><dd><pre class="text.syntax"><code>DUDebugMenuEnabled -bool true
-advanced-image-options -bool true
-</code></pre></dd></div><div id="Defaults.defaults-write-com.apple.terminal" documented="true"><dt><a class="dkn" href="#Defaults.defaults-write-com.apple.terminal"></a><code class="">defaults write com.apple.terminal</code></dt><dd><pre class="text.syntax"><code>SecureKeyboardEntry -bool true
+<html root="2"><head><title>jwp.log.operations.macos</title><meta charset="utf-8"/><link as="style" rel="preload" href="../../.legacy-web/core.css"></link><link as="style" rel="preload" href="../../.legacy-web/factor.css"></link><link rel="stylesheet" href="../../.legacy-web/core.css"></link><link rel="stylesheet" href="../../.legacy-web/factor.css"></link></head><body><main><h1><span class="prefix"></span><div class="page-subject"><img class="icon" src="../../.factor-type-icon/if.fault.io/meta-chapter.svg"></img><span class="subject-identifier">macos</span><a href="http://if.fault.io/factors/meta.chapter"><code class="type">meta.chapter</code></a></div><div class="page-context"><a href="../"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij48dGV4dCB4PSI0IiB5PSIwLjg4ZW0iIGZvbnQtc2l6ZT0iMjQ4Ij7wn5OcPC90ZXh0Pjwvc3ZnPg=="></img></a><span class="context-identifier">jwp.log</span></div></h1><section class="chapter"></section><section class="unspecified" documented="true" local-identifier="Recall" id="Recall"><h1><span class="prefix"></span><a class="title" href="#Recall"><span class="text.normal">Recall</span></a><span class="abstract-type"></span></h1><section class="unspecified" documented="true" local-identifier="Set Hostname" id="Recall.Set-Hostname"><h1 class="integrate"><span class="prefix"></span><a class="section" href="#Recall">Recall</a><a class="title" href="#Recall.Set-Hostname"><span class="text.normal">Set Hostname</span></a><span class="abstract-type"></span></h1><pre class="text.syntax"><code class="syntax/shell"># Also, ComputerName and LocalHostName.
+scutil –-set HostName "host.name"
+</code></pre></section><section class="unspecified" documented="true" local-identifier="Code Signatures" id="Recall.Code-Signatures"><h1 class="integrate"><span class="prefix"></span><a class="section" href="#Recall">Recall</a><a class="title" href="#Recall.Code-Signatures"><span class="text.normal">Code Signatures</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">Enable or disable checks:</span></p><pre class="text.syntax"><code class="syntax/shell">spctl --master-disable
+spctl --master-enable
+</code></pre><p><span class="text.normal">Signing:</span></p><pre class="text.syntax"><code class="syntax/shell">codesign -f -s - "/path/to/executable"
+</code></pre></section></section><section class="unspecified" documented="true" local-identifier="Defaults" id="Defaults"><h1><span class="prefix"></span><a class="title" href="#Defaults"><span class="text.normal">Defaults</span></a><span class="abstract-type"></span></h1><dl class="text.mapping"><div id="Defaults.Globals" documented="true"><dt><a class="dkn" href="#Defaults.Globals"></a><span class="directory-key"><span class="text.normal">Globals</span></span></dt><dd sole="syntax"><pre class="text.syntax"><code class="syntax/shell">defaults write -g \
+	ApplePressAndHoldEnabled -bool false \
+	InitialKeyRepeat -int 9 \
+	KeyRepeat -int 1 \
+	NSAutomaticCapitalizationEnabled -bool false \
+	NSDocumentSaveNewDocumentsToCloud -bool false \
+	com.apple.screencapture disable-shadow -bool true \
+</code></pre></dd></div><div id="Defaults.DiskUtility" documented="true"><dt><a class="dkn" href="#Defaults.DiskUtility"></a><span class="directory-key"><span class="text.normal">DiskUtility</span></span></dt><dd sole="syntax"><pre class="text.syntax"><code class="syntax/shell">defaults write com.apple.DiskUtility \
+	DUDebugMenuEnabled -bool true \
+	advanced-image-options -bool true \
+</code></pre></dd></div><div id="Defaults.Terminal" documented="true"><dt><a class="dkn" href="#Defaults.Terminal"></a><span class="directory-key"><span class="text.normal">Terminal</span></span></dt><dd sole="syntax"><pre class="text.syntax"><code class="syntax/shell">defaults write com.apple.terminal \
+	SecureKeyboardEntry -bool true
+</code></pre></dd></div></dl></section><section class="unspecified" documented="true" local-identifier="Bluetooth Bitpool" id="Bluetooth-Bitpool"><h1><span class="prefix"></span><a class="title" href="#Bluetooth-Bitpool"><span class="text.normal">Bluetooth Bitpool</span></a><span class="abstract-type"></span></h1><pre class="text.syntax"><code class="syntax/shell">for x in
+	"Apple Bitpool Max (editable)"
+	"Apple Bitpool Min (editable)"
+	"Apple Initial Bitpool (editable)"
+	"Apple Initial Bitpool Min (editable)"
+	"Negotiated Bitpool"
+	"Negotiated Bitpool Max"
+	"Negotiated Bitpool Min"
+do
+	defaults write com.apple.BluetoothAudioAgent "$x" -int 40
+done
+</code></pre></section><section class="unspecified" documented="true" local-identifier="LLVM" id="LLVM"><h1><span class="prefix"></span><a class="title" href="#LLVM"><span class="text.normal">LLVM</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">On macOS, using the pre-built clang binary has a header conflict (10.15).</span><span class="text.line-break"> </span><span class="text.normal">In order to avoid the issue, the system headers need to be re-ordered:</span></p><pre class="text.syntax"><code class="syntax/shell">-isystem/opt/llvm/include
+-isystem/opt/llvm/include/c++/v1
+-isystem/opt/llvm/lib/clang/15.0.0/include
+</code></pre><p><span class="text.normal">Where </span><code class="system.directory">/opt/llvm</code><span class="text.normal"> is the installation prefix.</span></p><dl class="text.mapping"><div id="LLVM.Issues" documented="true"><dt><a class="dkn" href="#LLVM.Issues"></a><span class="directory-key"><code class="control.context">Issues</code></span></dt><dd><ol class="text.sequence"><li><p><a class="absolute" href="https://stackoverflow.com/questions/58628377/catalina-c-using-cmath-headers-yield-error-no-member-named-signbit-in-th">https://stackoverflow.com/questions/58628377/catalina-c-using-cmath-headers-yield-error-no-member-named-signbit-in-th</a></p></li></ol></dd></div></dl></section><section class="filesystem" documented="true" local-identifier="Python" id="Python"><h1><span class="prefix"></span><a class="title" href="#Python"><span class="text.normal">Python</span></a><span class="abstract-type">filesystem</span></h1><p><span class="text.normal">Scripts for maintaining a set of Python installations on macOS.</span><span class="text.line-break"> </span><span class="text.normal">Presumed location: </span><code class="">/Library/Frameworks/Python.framework/Versions</code><span class="text.normal">.</span></p><dl class="text.mapping"><div id="Python.ftp-versions.sh" documented="true"><dt><a class="dkn" href="#Python.ftp-versions.sh"></a><span class="directory-key"><span class="text.normal">ftp-versions.sh</span></span></dt><dd sole="syntax"><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Get the unique set of 3.x versions from python.org/ftp/python/
 
-</code></pre></dd></div></dl></section><h1 class="footing"></h1></main></body></html>
+MAJOR=3
+ENL='\
+'
+curl -s https://www.python.org/ftp/python/ | \
+	sed "s/[&#60;&#62;]/$ENL/g" | \
+	grep href | \
+	grep -o '\&#60;'"$MAJOR"'\.[0-9]\+\.[0-9]\+\&#62;' | \
+	sort -u
+</code></pre></dd></div><div id="Python.download-versions.sh" documented="true"><dt><a class="dkn" href="#Python.download-versions.sh"></a><span class="directory-key"><span class="text.normal">download-versions.sh</span></span></dt><dd sole="syntax"><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Get the unique set of 3.x (&#62;3.6) versions from python.org/downloads/
+
+MAJOR=3
+ENL='\
+'
+curl -s 'https://www.python.org/downloads/' | \
+	sed "s/&#60;&#62;/$ENL/g" | \
+	grep -o '\&#60;'"$MAJOR"'\.\([6-9]\|[0-9][0-9]\+\)\.[0-9]\+\&#62;' | \
+	sort -u
+</code></pre></dd></div><div id="Python.latest-versions.sh" documented="true"><dt><a class="dkn" href="#Python.latest-versions.sh"></a><span class="directory-key"><span class="text.normal">latest-versions.sh</span></span></dt><dd sole="syntax"><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Find the latest release for each major and minor.
+
+sort -t'.' -k1,2 -k3nr | sort -u -t'.' -k1,2 | sort -t'.' -k1nr -k2nr
+</code></pre></dd></div><div id="Python.installed.sh" documented="true"><dt><a class="dkn" href="#Python.installed.sh"></a><span class="directory-key"><span class="text.normal">installed.sh</span></span></dt><dd sole="syntax"><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+for x in 3.*/
+do
+	$x/bin/python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
+done | sort -t'.' -k1nr -k2nr
+</code></pre></dd></div><div id="Python.delta.sh" documented="true"><dt><a class="dkn" href="#Python.delta.sh"></a><span class="directory-key"><span class="text.normal">delta.sh</span></span></dt><dd sole="syntax"><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Get the Python versions that need to be updated.
+
+cd /Library/Frameworks/Python.framework/Versions
+./download-versions.sh | ./latest-versions.sh
+</code></pre></dd></div><div id="Python.integrate.sh" documented="true"><dt><a class="dkn" href="#Python.integrate.sh"></a><span class="directory-key"><span class="text.normal">integrate.sh</span></span></dt><dd sole="syntax"><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Build and install Python from source (pwd) on macOS.
+# Presumes write permissions on &#38;&#60;file:///Library/Frameworks/Python.framework/Versions&#62;.
+export DYLD_LIBRARY_PATH=/usr/local/lib
+export CC="$(xcrun --toolchain XcodeDefault -f clang)"
+export SDK="$(xcrun --show-sdk-path)"
+
+XCPATH="$(xcode-select --print-path)"
+MAC="$XCPATH/Platforms/MacOSX.platform"
+XCI="$MAC/Developer/SDKs/MacOSX.sdk/usr/include"
+
+# -isystem is important; -I will (sometimes) put macOS' expat ahead of Python's.
+CFLAGS="-F$SDK/System/Library/Frameworks -isystem$XCI"
+CFLAGS="$CFLAGS -include TargetConditionals.h"
+CFLAGS="$CFLAGS -Wno-nullability-completeness -Wno-expansion-to-defined"
+export CFLAGS
+
+if ! : Possible LTO version mismatch.
+then
+	export CC=/opt/llvm/bin/clang
+	export PATH=/opt/llvm/bin:$PATH
+fi
+
+./configure \
+	--disable-test-modules \
+	--with-lto \
+	--without-doc-strings \
+	--with-computed-gotos \
+	--with-openssl=/usr/local \
+	--enable-optimizations \
+	--enable-framework || exit
+
+gmake -j 8 || exit
+gmake install || exit
+</code></pre></dd></div><div id="Python.update.sh" documented="true"><dt><a class="dkn" href="#Python.update.sh"></a><span class="directory-key"><span class="text.normal">update.sh</span></span></dt><dd sole="syntax"><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Update pip and site-packages of each installed version using pip.
+echo $(pwd)
+for x in *.*/
+do
+	PIP="$x/bin/python3 -m pip"
+	echo "-&#62; $PIP"
+	$PIP install -U pip || exit
+	$PIP list --outdated --format=json | jq -r '.[]|.name' | $PIP install -U -r /dev/stdin || exit
+done
+</code></pre></dd></div></dl></section><section class="unspecified" documented="true" local-identifier="10.15" id="10.15"><h1><span class="prefix"></span><a class="title" href="#10.15"><span class="text.normal">10.15</span></a><span class="abstract-type"></span></h1><p><a class="absolute" href="https://apps.apple.com/us/app/macos-catalina/id1466841314">https://apps.apple.com/us/app/macos-catalina/id1466841314</a></p></section><h1 class="footing"></h1></main></body></html>

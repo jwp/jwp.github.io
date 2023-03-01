@@ -1,5 +1,5 @@
 /**
-	/* Project, Factor, and Source boxed index styles.
+	// Index styles for Corpus, Project, and Sources.
 */
 @charset "utf-8";
 
@@ -49,7 +49,7 @@ dl.project-index > a > div > dt > span.factor-path,
 dl.factor-index > a > div > dt > span.factor-path,
 dl.source-index > a > div > dt > span.source-path {
 	margin-left: 6px;
-	font-weight: 800;
+	font-weight: 500;
 }
 
 dl.project-index > a > div > dd > span.index-abstract,
