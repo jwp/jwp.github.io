@@ -1,0 +1,14 @@
+! CONTEXT:
+	/title/
+		`Cooking and Food Links`
+
+/Open Food Facts/
+	&<https://world.openfoodfacts.org/>
+/Based Cooking/
+	&<https://based.cooking/>
+/Spoonacular/
+	&<https://spoonacular.com/>
+
+[ Safety ]
+
+&<https://www.foodsafety.gov/food-poisoning/bacteria-and-viruses>

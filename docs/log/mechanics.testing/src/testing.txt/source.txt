@@ -1,0 +1,52 @@
+! CONTEXT:
+	/title/
+		`Repeatable Function Analysis`
+
+The use of abstract devices (programs) does not require that associated tests
+be available in order for it to function. However, the absence of tests can
+make construction extraordinarily difficult when the device reaches a certain level of
+complexity as tracking the working state of features becomes increasingly taxing.
+
+[ Evidence ]
+
+The purpose of testing software is the production of evidence to support the assertion that the
+implemented feature set is working as it is intended.
+
+Testing programs, unit and integration, are created to make this evidence reproducible by
+the author and by other users.
+
+Reproducibility of evidence is of notable importance when the software may be
+used in environments that were not anticipated by or available to the author.
+
+[ By Any Other Name ]
+
+Essentially, the
+&<https://en.wikipedia.org/wiki/Scientific_method[scientific method]>
+applied to software.
+
+[ Types ]
+
+Tests may seek to analyze different types of properties.
+
+/Unit/
+	Usually, a highly focused test analyzing the behavior of a specific
+	function or trait of a function. However, the acceptable scope of a
+	unit test may vary from project to project.
+/Integration/
+	Analysis of a feature or function. Normally, a wider scope than a unit test.
+	Tests analyzing some aggregate behavior with respect to the operating environment.
+	Like unit tests, the scope may vary from project to project.
+/Performance/
+	Tests analyzing how well the software performs in the operating environment.
+	While being similarly fated, the primary point of interest is a rate metric.
+/Static/
+	Tests performing static analysis of the sources.
+	Developer defined static analysis.
+/Explicit/
+	Tests that are explicitly invoked analyzing functionality that may already be covered
+	elsewhere. Explicit tests covers cases where expensive tests are desired to be present,
+	but not normally ran.
+
+[ Discussions ]
+
+&<https://matklad.github.io/2022/07/04/unit-and-integration-tests.html>

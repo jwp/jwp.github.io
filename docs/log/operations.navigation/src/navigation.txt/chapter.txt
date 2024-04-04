@@ -1,0 +1,18 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+! CONTEXT:
+	/protocol/
+		&<http://if.fault.io/chapters/>
+
+Get back to your origin context:
+Shift-Meta-Back, go to page at the previous site in history.
+
+Shift-Meta-Forward, go to page at the next site in future.
+
+Meta-Up, ascend to parent path
+Shift-Meta-Up, ascend to parent path, reset query arguments
+

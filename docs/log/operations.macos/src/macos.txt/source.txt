@@ -1,0 +1,280 @@
+[ Bugs ]
+Date App[pid:tid] CoreText note: Client requested name ".SFNSMono-Regular", it will get Times-Roman rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+
+Correct by installing SFMono:
+`open /System/Applications/Utilities/Terminal.app/Resources/Fonts/*`
+
+[ Recall ]
+
+[ > Set Hostname ]
+
+#!syntax/shell
+	# Also, ComputerName and LocalHostName.
+	scutil –-set HostName "host.name"
+
+[ > Code Signatures ]
+
+Enable or disable checks:
+
+#!syntax/shell
+	spctl --master-disable
+	spctl --master-enable
+
+Signing:
+
+#!syntax/shell
+	codesign -f -s - "/path/to/executable"
+
+[ Defaults ]
+
+/Globals/#!syntax/shell
+	defaults write -g \
+		ApplePressAndHoldEnabled -bool false \
+		InitialKeyRepeat -int 9 \
+		KeyRepeat -int 1 \
+		NSAutomaticCapitalizationEnabled -bool false \
+		NSDocumentSaveNewDocumentsToCloud -bool false \
+		com.apple.screencapture disable-shadow -bool true \
+
+/DiskUtility/#!syntax/shell
+	defaults write com.apple.DiskUtility \
+		DUDebugMenuEnabled -bool true \
+		advanced-image-options -bool true \
+
+/Terminal/#!syntax/shell
+	defaults write com.apple.terminal \
+		SecureKeyboardEntry -bool true
+
+[ Bluetooth Bitpool ]
+
+#!syntax/shell
+	for x in
+		"Apple Bitpool Max (editable)"
+		"Apple Bitpool Min (editable)"
+		"Apple Initial Bitpool (editable)"
+		"Apple Initial Bitpool Min (editable)"
+		"Negotiated Bitpool"
+		"Negotiated Bitpool Max"
+		"Negotiated Bitpool Min"
+	do
+		defaults write com.apple.BluetoothAudioAgent "$x" -int 40
+	done
+
+[ LLVM ]
+
+On macOS, using the pre-built clang binary has a header conflict (10.15).
+In order to avoid the issue, the system headers need to be re-ordered:
+
+#!syntax/shell
+	cat >clang.options <<EOF
+	-isystem/opt/llvm/include
+	-isystem/opt/llvm/include/c++/v1
+	-isystem/opt/llvm/lib/clang/15.0.0/include
+	EOF
+
+Where (system/directory)`/opt/llvm` is the installation prefix.
+
+[ > Catalina ]
+
+When C++ compilation has issues:
+
+#!syntax/shell
+	cat >clang.options <<EOF
+	-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+	-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
+	-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include
+	EOF
+
+#!syntax/shell
+	env "CFLAGS=--config $(pwd)/clang.options" ...
+
+/(control/context)`Issues`/
+	# &<https://stackoverflow.com/questions/58628377/catalina-c-using-cmath-headers-yield-error-no-member-named-signbit-in-th>
+
+[ Python ]
+
+! CONTROL:
+	/type/
+		`filesystem`
+	/location/
+		`/Library/Frameworks/Python.framework/Versions`
+
+Scripts for maintaining a set of Python installations on macOS.
+Presumed location: `/Library/Frameworks/Python.framework/Versions`.
+
+/ftp-versions.sh/#!syntax/shell
+	#!/bin/sh
+	# Get the unique set of 3.x versions from python.org/ftp/python/
+
+	MAJOR=3
+	ENL='\
+	'
+	curl -s https://www.python.org/ftp/python/ | \
+		sed "s/[<>]/$ENL/g" | \
+		grep href | \
+		grep -o '\<'"$MAJOR"'\.[0-9]\+\.[0-9]\+\>' | \
+		sort -u
+
+/ftp-fix-timecontext.sh/#!syntax/shell
+	# Reformat ftp download anchors to inject a `date` attribute.
+	# Convert the timestamps to something ISO-8601'ish. Absurd.
+	sed "$(printf '%s%s%s%s' \
+		's/<a\(.*\)<\/a>[[:space:]]*' \
+		'\([0-9]\{1,2\}\)-\([a-zA-Z]\{3\}\)-\([0-9]*\)' \
+		'.*\([0-9][0-9]:[0-9][0-9]\).*' \
+		'/<a date="\4-\3-\2 \5" \1<\/a>/'
+	)" | \
+	sed "$(
+		# Build the substitutions for rewriting three character month identifiers
+		# with their corresponding numeric representation.
+		linenum='\([^:]*\):'
+		captures="$(yes '\(.\)' | head -6 | tr -d '\n')"
+		sub='s\/-[\2\5][\3\6][\4\7]-\/-\1-\/'
+		# Initialize months reference file.
+		cd "$(mktemp -d)" || exit
+		echo 'jan feb mar apr may jun jul aug sep oct nov dec' | tr ' ' '\n' >./months
+		# Get uppercase, join with lower; number the lines.
+		# Substitute three character months for their corresponding (line) number.
+		cat ./months | tr '[[:lower:]]' '[[:upper:]]' | lam - months | \
+		grep -n . | sed "s/${linenum}${captures}.*/${sub}/" | tr '\n' ';'
+		rm ./months
+	)"
+
+/download-versions.sh/#!syntax/shell
+	#!/bin/sh
+	# Get the unique set of 3.x (>3.6) versions from python.org/downloads/
+
+	MAJOR=3
+	ENL='\
+	'
+	curl -s 'https://www.python.org/downloads/' | \
+		sed "s/<>/$ENL/g" | \
+		grep -o '\<'"$MAJOR"'\.\([6-9]\|[0-9][0-9]\+\)\.[0-9]\+\>' | \
+		sort -u
+
+/latest.sh/#!syntax/shell
+	#!/bin/sh
+	# Find the latest release for each major and minor.
+
+	sort -t'.' -k1,2 -k3nr | sort -u -t'.' -k1,2 | sort -t'.' -k1nr -k2nr
+
+/installed.sh/#!syntax/shell
+	#!/bin/sh
+	for x in 3.*/
+	do
+		$x/bin/python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
+	done | sort -t'.' -k1nr -k2nr
+
+/mkdelta.sh/#!syntax/shell
+	#!/bin/sh
+	# Initialize the Delta directory with the information required by install-sources.
+	# Collect installed versions, latest release versions, and join into the update set.
+
+	vjoin ()
+	{
+		join -t. -o1.2 -o1.3 -o2.3 -1 2 -2 2 "$@" | sed 's/\./ /g'
+	}
+
+	mkdir Delta || exit
+	sh ./ftp-versions.sh | sh ./latest.sh >./Delta/latest-releases
+	sh ./installed.sh >./Delta/installed-versions
+	vjoin >./Delta/updates \
+		./Delta/installed-versions \
+		./Delta/latest-releases
+
+/install-sources.sh/#!syntax/shell
+	#!/bin/sh
+	# Install the sources of the updates designated by mkdelta.
+	MAJOR=3
+
+	install_source ()
+	{
+		vminor="$1"
+		ipatch="$2"
+		lpatch="$3"
+
+		lrelease="${MAJOR}.${vminor}.${lpatch}"
+		ipath="../${MAJOR}.${vminor}/src"
+		echo "[$MAJOR.$vminor.$ipatch] -> $lrelease"
+		if test -e "$ipath"
+		then
+			# Presume build is in progress.
+			echo "-> Skipping; '$ipath' is present."
+			continue
+		fi
+
+		filename="Python-${lrelease}"
+		ri="https://www.python.org/ftp/python/${lrelease}/${filename}.tar.xz"
+
+		# Presume incompletion.
+		rm -f "${filename}.tar.xz" && fault-tool http-cache "$ri"
+
+		# Extract and get signature.
+		tar zxf "${filename}.tar.xz" || continue
+		shasum -a 512 "${filename}.tar.xz" >"${filename}/.delta-signature"
+		rm -f "${filename}.tar.xz"
+
+		# Commit.
+		mv "${filename}" "$ipath" || exit
+	}
+
+	cd /Library/Frameworks/Python.framework/Versions
+	while read line
+	do
+		set -- $line
+		(cd Delta && install_source "$@")
+	done <./Delta/updates
+
+	rm -f ./Delta/*
+	rmdir ./Delta
+
+/integrate.sh/#!syntax/shell
+	#!/bin/sh
+	# Build and install Python from source (pwd) on macOS.
+	# Presumes write permissions on &<file:///Library/Frameworks/Python.framework/Versions>.
+	export DYLD_LIBRARY_PATH=/usr/local/lib
+	export CC="$(xcrun --toolchain XcodeDefault -f clang)"
+	export SDK="$(xcrun --show-sdk-path)"
+
+	XCPATH="$(xcode-select --print-path)"
+	MAC="$XCPATH/Platforms/MacOSX.platform"
+	XCI="$MAC/Developer/SDKs/MacOSX.sdk/usr/include"
+
+	# -isystem is important; -I will (sometimes) put macOS' expat ahead of Python's.
+	CFLAGS="-F$SDK/System/Library/Frameworks -isystem$XCI"
+	CFLAGS="$CFLAGS -include TargetConditionals.h"
+	CFLAGS="$CFLAGS -Wno-nullability-completeness -Wno-expansion-to-defined"
+	export CFLAGS
+
+	if ! : Possible LTO version mismatch.
+	then
+		export CC=/opt/llvm/bin/clang
+		export PATH=/opt/llvm/bin:$PATH
+	fi
+
+	./configure \
+		--disable-test-modules \
+		--with-lto \
+		--without-doc-strings \
+		--with-computed-gotos \
+		--with-openssl=/usr/local \
+		--enable-optimizations \
+		--enable-framework || exit
+
+	gmake -j 8 || exit
+	gmake install || exit
+/update.sh/#!syntax/shell
+	#!/bin/sh
+	# Update pip and site-packages of each installed version using pip.
+	echo $(pwd)
+	for x in *.*/
+	do
+		PIP="$x/bin/python3 -m pip"
+		echo "-> $PIP"
+		$PIP install -U pip || exit
+		$PIP list --outdated --format=json | jq -r '.[]|.name' | $PIP install -U -r /dev/stdin || exit
+	done
+
+[ 10.15 ]
+
+&<https://apps.apple.com/us/app/macos-catalina/id1466841314>

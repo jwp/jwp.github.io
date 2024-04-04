@@ -1,0 +1,25 @@
+/**
+	// Variables for dark theme.
+*/
+
+:root {
+	--text: #ececec;
+
+	/* Backgrounds */
+	--root: #444444;
+	--sheet: #2c2c2c;
+	--division: #1D1D1D;
+
+	--box: rgba(0, 0, 0, 0.2);
+	--box-border: rgba(0, 0, 0, 1);
+
+	--element-titles: cornflowerblue;
+	--integrated-titles: #b19cd9;
+
+	--directory-item-symbol: cornflowerblue;
+
+	--link-hover: cornflowerblue;
+	--link-type-indicator: cornflowerblue;
+	--invalid-link: red;
+	--target-highlighting: #fdfd96;
+}

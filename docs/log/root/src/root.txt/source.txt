@@ -1,0 +1,62 @@
+Collection of projects, thoughts, notes, and references.
+
+Much of the content here is an experiment evaluating factor representations as a means
+for managing a knowledge base or web log.
+
+I am looking for work. Something without the psychological abuse would be super.
+
+[ Entries ]
+
+! CONTROL:
+	/type/
+		`journal`
+
+/jsonlz4 decompress/
+	- (control)`property-set`
+	- (time-context)`2023-04-23`
+
+	For reading sessionstore and bookmark backup files.
+	Shorthand of the GIST link below.
+
+	#!syntax/python
+		# pip install --user lz4
+		import sys, lz4.block
+		sys.stdin.buffer.read(8)
+		sys.stdout.buffer.write(lz4.block.decompress(sys.stdin.buffer.read()))
+
+	&<https://gist.github.com/Tblue/62ff47bef7f894e92ed5>
+	&<https://unix.stackexchange.com/questions/326897/how-to-decompress-jsonlz4-files-firefox-bookmark-backups-using-the-command-lin>
+
+/DRY Constraints/
+	- (control)`property-set`
+	- (time-context)`2023-04-22`
+
+	I often find identifier re-use implies a consistent type. While readability may suffer
+	without redundancy, it may be advantageous to be able to constrain idenitifiers
+	within some scope(source file, directory, project).
+	In particular, identifiers that closely resemble the type's name.
+
+	The goal being DRY constraints, simplified element directory
+	associations(for completion indexes), and simplified refactoring tools?
+	Not such a feature would fit into many languages gracefully. Exclusive words?
+	Nearly a keyword treated as an identifier.
+
+/(titled)&.mechanics.which-command-v/
+	- (control)`property-set`
+	- (time-context)`2023-04-07`
+
+	`command -v` is the right method in some cases, but there are unwanted
+	features when probing systems for *executable files*.
+
+/(titled)&.mechanics.legacy-http/
+	- (control)`property-set`
+	- (time-context)`2023-04-06`
+
+	What is to come of text mode HTTP?
+
+/(titled)&.mechanics.shell-patterns/
+	- (control)`property-set`
+	- (time-context)`2023-02-17`
+
+	My shell scripts probably look strange to most eyes.
+	A small set of protocols that I often employ when writing POSIX shell.

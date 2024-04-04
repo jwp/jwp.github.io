@@ -1,0 +1,16 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+! CONTEXT:
+	/title/
+		`Keyboard, Video, Mouse Switch`
+
+	/wikipedia/
+		`KVM_Switch`
+
+/PiKVM/
+	&<https://pikvm.org/>
+

@@ -1,0 +1,34 @@
+! CONTEXT:
+	/title/
+		`Ingredient Types`
+
+[ Fats ]
+
+- Oils
+- Ghee
+
+[ Carbohydrates ]
+
+- Grains
+- Bread
+- Rice
+- Potatoes
+
+[ Proteins ]
+
+- Meats
+- Beans
+
+[ Dairy ]
+
+Carbohydrates, Proteins, and Fats.
+
+- Milk
+- Cream
+- Yogurt
+- Cheese
+- Butter
+
+[ References ]
+
+# &<https://www.chp.gov.hk/en/static/100022.html>

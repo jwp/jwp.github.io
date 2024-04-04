@@ -1,0 +1,156 @@
+"""
+# Connect an adapter to the stored security context.
+"""
+import os
+import itertools
+import functools
+
+from fault.system import files
+from fault.system import process
+from fault.system import execution
+
+from fault.internet import ri
+
+from fault.project import system as lsf
+from fault.project import factory
+
+from fault.time.types import Timestamp
+from fault.time.system import utc
+
+from fault.text.io import sequence_chapter_element
+from fault.text.types import Paragraph, Fragment
+
+txt = (lsf.types.factor@'meta.chapter')
+requirements = '\n'.join([
+	'http://fault.io/python/system/extensions.interfaces',
+	'http://fault.io/python/security/implementations',
+])
+
+define = functools.partial(factory.Parameters.define,
+	lsf.types.Information(
+		identifier = '://x-agent-links/',
+		name = 'links',
+		authority = 'fault.io',
+		contact = 'http://fault.io/critical'
+	),
+	# Formats
+	{
+		'http://if.fault.io/factors/python': [
+			('module', 'py', 'psf-v3', 'python'),
+			('interface', 'pyi', 'psf-v3', 'python'),
+		],
+		'http://if.fault.io/factors/meta': [
+			('chapter', 'txt', 'fault-1', 'kleptic'),
+		],
+	},
+	sets=[],
+)
+
+def site(uri:str):
+	"""
+	# Get the host of the given &uri.
+	"""
+
+	return ri.parse(uri)['host']
+
+def title(link):
+	if link[-1]:
+		return link[-1]
+	if link[0].startswith('data:'):
+		return f"(data {len(link[0])})"
+	parts = ri.parse(link[0])
+
+	# Strip trailing empty.
+	path_title = parts.get('path')
+	while path_title:
+		if not path_title[-1].strip():
+			del path_title[-1:]
+		else:
+			break
+
+	if path_title and path_title[-1]:
+		return path_title[-1]
+	else:
+		return parts.get('host')
+
+def directory(items):
+	return [('directory', list(items), {})]
+
+def paragraph(fragments):
+	return ('paragraph', Paragraph(fragments), {})
+
+def fragment(typ, val):
+	return paragraph([Fragment((typ, val))])
+
+def properties(records):
+	return ('set', [
+		('item', [fragment('literal/grave-accent/control', 'property-set')], {})] + [
+		('item', [
+			paragraph([Fragment((
+				'literal/grave-accent/' + '/'.join(k), v
+			))])
+		], {})
+		for k, v in records
+	], {})
+
+def ref(pid, link):
+	return ((pid,), link)
+
+def form_link_item(link):
+	hl = link[0]
+	lt = title(link)
+	return ('item', [
+		('key', Paragraph([
+			('literal/grave-accent', lt),
+		]), {}),
+		('value', [
+			properties([
+				ref('reference', hl),
+				ref('time-context', link[1].split('T')[0]),
+			] + ([ref('icon', link[2])] if link[2] else [])),
+		], {}),
+	], {'identifier': lt})
+
+def form_site_section(group):
+	site, links = group
+	return ('section',
+		[('admonition', [
+			] + directory([
+				('item', [
+					('key', Paragraph([('text/normal', 'type')]), {}),
+					('value', [fragment('text/normal', 'site')], {}),
+				], {'identifier': 'type'}),
+			]),
+			{'type': 'CONTROL', 'title': ''}
+		)] + directory(map(form_link_item, links)),
+		{
+			'identifier': site,
+			'selector-level': 0,
+			'selector-multiple': None,
+			'selector-path': (site,),
+		}
+	)
+
+def process_links(links):
+	sections = itertools.groupby(links, key=(lambda x: site(x[0])))
+	return ('chapter',
+		list(map(form_site_section, sections)),
+		{'selector-level': 0}
+	)
+
+def initialize(product, links, project='links'):
+	route = product/project
+	processed = process_links(links)
+	chapters = [
+		('sites', txt, ''.join(sequence_chapter_element(processed))),
+	]
+	return factory.instantiate(define(soles=chapters), route)
+
+def main(inv:process.Invocation) -> process.Exit:
+	target, *link_files = inv.argv
+	fs_route = (process.fs_pwd() @ target)
+	with (process.fs_pwd() @ link_files[0]).fs_open('r') as f:
+		links = [x.rstrip('\n').split('\t', 3) for x in f.readlines()]
+
+	initialize(fs_route, links)
+	return inv.exit(0)

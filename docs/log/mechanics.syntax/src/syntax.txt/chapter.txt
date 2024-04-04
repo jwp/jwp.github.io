@@ -1,0 +1,29 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+! CONTEXT:
+	/title/
+		`Syntax Roots`
+
+Syntax processing has three primary modes: inclusion, exclusion, and capture. Nearly all
+implementations of interpreters will handle these cases with minor deviations.
+
+[ Inclusions ]
+
+The primary syntax processing mode where expressions are structured for recognition and translation.
+
+[ Exclusions ]
+
+Syntax-level comments. It is possible for comments to be encapsulated inside inclusions,
+but most languages can identify comments during the parse stage without special recognition
+of inclusions.
+
+[ Captures ]
+
+Like exclusions, captures can be interpreted from inclusion expressions, but most languages
+handle captures during the parsing stage. Captures are used to recognize constants formulated
+from the data used to formulate tokens.
+

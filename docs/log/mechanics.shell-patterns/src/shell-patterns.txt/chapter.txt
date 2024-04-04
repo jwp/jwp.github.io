@@ -1,0 +1,102 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+! CONTEXT:
+	/title/
+		`Variety of Shell Programming Practices`
+
+The practices described here are not necessarily considered superior.
+Rather, it's just a protocol, pattern, to achieve some functional
+or aesthetic goal. The practices of a working environment will likely take
+precedence in most cases where some conflict of style is present.
+
+[ Bourne Limitations ]
+
+Limiting the used features to that of POSIX shell.
+While vectors can certainly be useful, often it is the case that
+use of non-standard features are a good indicator that
+shell might not be the right choice. Python, Perl, and Ruby are all
+likely candidates for a shell script that has evolved into something more.
+
+[ Unconditional Indentation ]
+
+While shell is normally capable of being arbitrary indented,
+use of the (command)`:` with an if-statement creates a natural
+opportunity to indent when it is desired to group a set of commands.
+
+#!shell
+	if : Comment; then
+		# Section
+		SETTING=...
+		Command ...
+		export SETTING
+	fi
+	
+While not a substantial improvement to just indenting after a comment,
+there is the possibility of overriding the (command)`:` to perform
+filtering of specific sections.
+
+[ Command Syntax with Flow Control Conditions ]
+
+Bracket syntax, `[ ... ]`, for conditionals is the common form among authors.
+
+#!shell
+	if [ 0 = $VAR ]
+	then
+		...
+	fi
+	
+However, it lends to the idea that the statement is somehow special where
+the flow control method is merely reacting to the exit status of a
+command, builtin or system.
+
+By preferring "Command Syntax" for conditionals, it serves as a reminder that
+it is just that, a command.
+
+#!shell
+	if test 0 = $VAR
+	then
+		...
+	fi
+	
+[ Subshell More ]
+
+Subshells are a great way to limit the scope of a specific execution context.
+Where appropriate, use them to:
+
+- Push and pop the current working directory: `(cd; pwd-sensitive-command)`.
+- Temporarily override environment variables. Notably, `PATH` to control commands.
+- Leverage `exit` based "long" jumps. Exit the subshell from a function called at any depth.
+
+[ Grave Accent Avoidance ]
+
+The grave accent command substitution syntax can be difficult to read in some cases.
+Parenthesis are much more legible and can be nested.
+
+[ Always Be Quoting ]
+
+Not always, but usually. There's no guarantee that filesystem paths are clean of
+field separators, but it is guaranteed that quoting your expansion will keep `$IFS`
+from separating fields.
+
+[ Test Strings with Constant Prefixes ]
+
+While unlikely of importance today, there were shells that would drop fields given
+that an expansion yielded an empty string or referenced an unset variable.
+A common cure for this was to include a constant prefix on strings where acceptable:
+
+#!shell
+	# Without the `x` prefix, "$VAR" would get dropped as a field entirely
+	# by some shell implementations. Even when quoted.
+	test x"" = x"$VAR" && handle_empty_string_case
+	
+This is only useful when trying to maximize the portability of a script.
+
+[ Modern Tooling ]
+
+/Linters/
+	- &<https://shellcheck.net>
+	

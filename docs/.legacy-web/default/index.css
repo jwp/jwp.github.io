@@ -1,0 +1,76 @@
+/**
+	// Index styles for Corpus, Project, and Sources.
+*/
+@charset "utf-8";
+
+dl.project-index,
+dl.factor-index,
+dl.source-index {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+dl.project-index > a > div,
+dl.factor-index > a > div,
+dl.source-index > a > div {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+dl.project-index > a > div,
+dl.source-index > a > div,
+dl.factor-index > a > div {
+	margin-top: 6px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 4px;
+
+	border-width: 1px;
+	border-style: solid;
+	border-color: #404040;
+
+	background-color: #1F1F1F;
+}
+
+dl.project-index > a > div:hover,
+dl.factor-index > a > div:hover,
+dl.source-index > a > div:hover {
+	background-color: #2A2A2A;
+}
+
+dl.project-index > a:hover,
+dl.factor-index > a:hover,
+dl.source-index > a:hover {
+	text-shadow: none;
+}
+
+dl.project-index > a > div > dt > span.factor-path,
+dl.factor-index > a > div > dt > span.factor-path,
+dl.source-index > a > div > dt > span.source-path {
+	margin-left: 6px;
+	font-weight: 500;
+}
+
+dl.project-index > a > div > dd > span.index-abstract,
+dl.factor-index > a > div > dd > span.index-abstract,
+dl.source-index > a > div > dd > span.index-abstract {
+	color: #A0A0A0;
+}
+
+dl.project-index > a > div > dt,
+dl.factor-index > a > div > dt,
+dl.source-index > a > div > dt {
+	width: 29%;
+	white-space: nowrap;
+}
+
+dl.project-index > a > div > dd,
+dl.factor-index > a > div > dd,
+dl.source-index > a > div > dd {
+	margin-left: auto;
+	width: 70%;
+	text-align: right;
+
+	margin-right: 8px;
+}

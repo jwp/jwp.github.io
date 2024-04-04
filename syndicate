@@ -1,0 +1,15 @@
+#!/bin/sh
+set -x
+
+# Set index to redirect after index.html gets overwritten.
+(cd docs;
+	if ! diff >/dev/null -q index.html .redirect-index.html
+	then
+		mv index.html project-index.html
+		cp .redirect-index.html index.html
+	fi)
+
+git add docs
+git add -u docs
+git commit -m "Syndication" .
+git push origin master

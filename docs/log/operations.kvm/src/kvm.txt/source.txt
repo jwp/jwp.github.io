@@ -1,0 +1,8 @@
+! CONTEXT:
+	/title/
+		`Keyboard, Video, Mouse Switch`
+	/wikipedia/
+		`KVM_Switch`
+
+/PiKVM/
+	&<https://pikvm.org/>

@@ -1,0 +1,36 @@
+[ Blends ]
+
+/Garam Masala/
+	- (control/type)`spice`
+	- Coriander
+	- Cumin
+	- Cinnamon
+	- Black Pepper
+	- Cloves
+	- Ginger
+	- Mace
+	- Green Cardamom
+	- Black Cardamom
+	- Nutmeg
+	- Bay Leaves
+
+/Creole Seasoning/
+	- (control/type)`spice`
+	- Paprika
+	- Salt
+	- Onion Powder
+	- Garlic Powder
+	- Oregano
+	- Basil
+	- Thyme
+	- Black Pepper
+	- White Pepper
+	- Cayenne Pepper
+
+/Italian Seasoning/
+	- (control/type)`spice`
+	- Basil
+	- Oregano
+	- Rosemary
+	- Marjoram
+	- Thyme

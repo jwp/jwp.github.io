@@ -1,0 +1,75 @@
+! CONTEXT:
+	/title/
+		`Static Analysis of Python Source using Type Annotations`
+
+[ Recall ]
+
+/Callable/#!syntax/python
+	FC: TypeAlias = Callable[[int], str]
+	def f(i int) -> str:
+		...
+
+	# Function taking an &FC.
+	def g(F: FC):
+		...
+
+/Protocol Based Calls/#!syntax/python
+	# Preferable to Callable TypeAlias when convenient.
+	from typing import Protocol
+
+	class Call(Protocol):
+		def __call__(self, i int, k:bytes = b'') -> str:
+			...
+
+	# Auto-protocol class? (not a thing)
+	@functiontype()
+	def Call(i int, k:bytes = b'') -> str:
+		...
+
+- &<https://mypy.readthedocs.io/en/stable/protocols.html#callback-protocols>
+- &<https://stackoverflow.com/questions/57837609/python-typing-signature-typing-callable-for-function-with-kwargs>
+
+[ Shorthands ]
+
+/Unions/
+	Described in &<https://peps.python.org/pep-0604/>.
+
+	#!syntax/python
+		def f(a: int|str|None) -> object:
+			"""
+			# Instead of `typing.Union[tuple[int|str|None]]`.
+			"""
+			...
+
+/Standard Collections/
+	Described in &<https://peps.python.org/pep-0585/>.
+
+	#!syntax/python
+		def f(t: tuple[int, str], l: list[bytes]) -> object:
+			"""
+			# Instead of `typing.Tuple[int, str]`.
+			# The list of types is long and can be found in the PEP.
+			"""
+			...
+
+[ Tools ]
+
+/mypy/
+	PSF
+	- &<https://mypy-lang.org/>
+	- &<https://mypy-lang.blogspot.com/>
+	- &<https://github.com/python/mypy>
+/pyright/
+	Microsoft
+	- &<https://github.com/microsoft/pyright>
+/pyre/
+	Facebook
+	- &<https://pyre-check.org/>
+	- &<https://github.com/facebook/pyre-check>
+
+[ PEPs ]
+
+/Protocols: Structural Subtyping/
+	&<https://peps.python.org/pep-0544/>
+/Self Type/
+	&<https://peps.python.org/pep-0673/>

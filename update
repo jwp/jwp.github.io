@@ -1,0 +1,12 @@
+#!/bin/sh
+SOURCE="$1"
+shift 1
+
+PUBLISH="$(pwd)/docs"
+
+fault-tool fictl delineate "-D$SOURCE"
+fault-tool python \
+system.chapters.print web factors \
+	--corpus-root="" \
+	--corpus-title="random" -P"jwp". \
+	"$PUBLISH" "$SOURCE"

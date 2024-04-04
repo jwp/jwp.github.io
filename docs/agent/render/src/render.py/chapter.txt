@@ -1,0 +1,352 @@
+! CONTROL:
+	/type/
+		module
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 155 20`
+Connect an adapter to the stored security context.
+
+
+[ os ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`4 1 4 9`
+
+[ itertools ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`5 1 5 16`
+
+[ functools ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`6 1 6 16`
+
+[ files ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`8 1 8 30`
+
+[ process ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`9 1 9 32`
+
+[ execution ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`10 1 10 34`
+
+[ ri ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`12 1 12 29`
+
+[ lsf ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`14 1 14 39`
+
+[ factory ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`15 1 15 33`
+
+[ Timestamp ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`17 1 17 38`
+
+[ utc ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`18 1 18 33`
+
+[ sequence_chapter_element ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`20 1 20 50`
+
+[ Paragraph ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`21 1 21 48`
+
+[ Fragment ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`21 1 21 48`
+
+[ txt ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`23 1 23 39`
+#!source
+	txt = (lsf.types.factor@'meta.chapter')
+
+[ requirements ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`24 1 27 2`
+#!source
+	requirements = '\n'.join([
+		'http://fault.io/python/system/extensions.interfaces',
+		'http://fault.io/python/security/implementations',
+	])
+
+[ define ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`29 1 47 1`
+#!source
+	define = functools.partial(factory.Parameters.define,
+		lsf.types.Information(
+			identifier = '://x-agent-links/',
+			name = 'links',
+			authority = 'fault.io',
+			contact = 'http://fault.io/critical'
+		),
+		# Formats
+		{
+			'http://if.fault.io/factors/python': [
+				('module', 'py', 'psf-v3', 'python'),
+				('interface', 'pyi', 'psf-v3', 'python'),
+			],
+			'http://if.fault.io/factors/meta': [
+				('chapter', 'txt', 'fault-1', 'kleptic'),
+			],
+		},
+		sets=[],
+	)
+
+[ site ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`49 1 54 29`
+(signature)`site(uri)`
+
+Get the host of the given (factor-local/parameter)&<#site.Parameters.uri[uri]>.
+
+
+[ title ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`56 1 74 26`
+(signature)`title(link)`
+
+
+[ directory ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`76 1 77 40`
+(signature)`directory(items)`
+
+
+[ paragraph ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`79 1 80 47`
+(signature)`paragraph(fragments)`
+
+
+[ fragment ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`82 1 83 41`
+(signature)`fragment(typ, val)`
+
+
+[ properties ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`85 1 94 7`
+(signature)`properties(records)`
+
+
+[ ref ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`96 1 97 22`
+(signature)`ref(pid, link)`
+
+
+[ form_link_item ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`99 1 112 23`
+(signature)`form_link_item(link)`
+
+
+[ form_site_section ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`114 1 132 2`
+(signature)`form_site_section(group)`
+
+
+[ process_links ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`134 1 139 2`
+(signature)`process_links(links)`
+
+
+[ initialize ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`141 1 147 58`
+(signature)`initialize(product, links)`
+
+
+[ main ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`149 1 156 19`
+		- (type/syntax)`process.Exit`
+		- (type/none/invalid)&<http://fault.io/dev/null[fault.system.process.Exit]>
+		
+(signature)`main(inv)`
+

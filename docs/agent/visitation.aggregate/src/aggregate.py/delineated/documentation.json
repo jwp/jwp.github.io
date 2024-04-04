@@ -1,0 +1,1 @@
+[["Given sorted visitation records to standard input, combine the records by minimizing the", "earliest visit, maximizing the latest visit, and summing the visit count.", "The combined set will be written to standard output."], ["Combine two records regarding the same subject."], ["Process visit records."], ["Merge visitation metrics."]]

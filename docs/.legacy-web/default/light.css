@@ -1,0 +1,22 @@
+/**
+	// Variables for light theme.
+*/
+
+:root {
+	--text: #CFCFCF;
+
+	/* Backgrounds */
+	--root: #444444;
+	--sheet: #303030;
+	--division: #1D1D1D;
+
+	--element-titles: cornflowerblue;
+	--integrated-titles: #b19cd9;
+
+	--directory-item-symbol: cornflowerblue;
+
+	--link-hover: cornflowerblue;
+	--link-type-indicator: cornflowerblue;
+	--invalid-link: red;
+	--target-highlighting: #fdfd96;
+}

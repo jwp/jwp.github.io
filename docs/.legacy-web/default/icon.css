@@ -1,0 +1,29 @@
+/**
+	/* Text icons or data links.
+*/
+@charset "utf-8";
+
+:root {
+	--section-icon: '\1F4C3';
+
+	/* Semantic Types */
+	--calendar-icon: '\1F4C5';
+	--clock-icon: '\1F570\FE0F';
+	--paper-icon: '\1F4C4';
+
+	/* Filesystem */
+	--fs-directory: '\1F4C1';
+	--fs-file: '\1F4C4';
+
+	/* Clipboard I/O */
+	--scissors-icon: '\2702\FE0F';
+	--clipboard-icon: '\1F4CB';
+	--pencil-icon: '\270F\FE0F';
+
+	/* Directory Entries */
+	--directory-arrow: '\21A3';
+	--parameter-type: '\2192';
+	--return-type: '\2190';
+	--exception-type: '\2191';
+	--effect-type: '\2193';
+}

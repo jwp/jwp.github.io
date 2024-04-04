@@ -1,0 +1,151 @@
+! CONTROL:
+	/type/
+		module
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 103 34`
+Retrieve mozilla profile paths using the default selection, index number, or name.
+
+
+[ os ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`4 1 4 14`
+
+[ Profiles ]
+! CONTROL:
+	/type/
+		class
+	/element/
+		- (control)`property-set`
+		- (source/area)`6 1 91 14`
+! INHERIT:
+	- (control)`property-set`
+	- (source/area)`6 16 6 21`
+	- (type/syntax)`object`
+	- (type/invalid/unknown)&<#object>
+	
+Profile directory lookup using `profiles.ini` file.
+
+Class defers dependency imports until (factor-local/method)&<#Profiles.load[load]> is called.
+
+
+[ Profiles >> __init__ ]
+! CONTROL:
+	/type/
+		method
+	/element/
+		- (control)`property-set`
+		- (source/area)`16 2 27 35`
+(signature)`__init__(self, path)`
+
+[ >> Parameters ]
+
+/(parameter)`self`/
+	
+	(control/absent)`Undocumented`.
+
+/(parameter)`path`/
+	
+	The path to the INI file to load.
+
+/(parameter)`configsections`/
+	
+	(control/absent)`Undocumented`.
+
+
+[ Profiles >> load ]
+! CONTROL:
+	/type/
+		method
+	/element/
+		- (control)`property-set`
+		- (source/area)`29 2 37 13`
+(signature)`load(self)`
+
+Import (invalid/unknown)&<#configparser> and load the INI file, (invalid/unknown)&<#profiles_path>.
+
+
+[ Profiles >> p_defaults ]
+! CONTROL:
+	/type/
+		method
+	/element/
+		- (control)`property-set`
+		- (source/area)`39 2 49 21`
+(signature)`p_defaults(self)`
+
+Scan for `Install*` sections and yield the `Default` field.
+
+
+[ Profiles >> p_index ]
+! CONTROL:
+	/type/
+		method
+	/element/
+		- (control)`property-set`
+		- (source/area)`51 2 58 41`
+(signature)`p_index(self, index)`
+
+Get the Path using the profile "index" number.
+
+
+[ Profiles >> p_name ]
+! CONTROL:
+	/type/
+		method
+	/element/
+		- (control)`property-set`
+		- (source/area)`60 2 70 13`
+(signature)`p_name(self, name)`
+
+Scan for sections with a matching `Name` and yield its `Path`.
+
+
+[ Profiles >> find ]
+! CONTROL:
+	/type/
+		classmethod
+	/element/
+		- (control)`property-set`
+		- (source/area)`71 2 91 14`
+		- (type/syntax)`str`
+		- (type/invalid/unknown)&<#str>
+		
+(signature)`find(Class, profiles_ini)`
+
+Find the default profile path or the one identified by (factor-local/parameter)&<#Profiles.find.Parameters.inquery[inquery]>.
+
+[ >> Returns ]
+
+Absolute path to the selected profile directory as a string.
+
+
+[ defaults ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`93 1 100 56`
+(signature)`defaults(agent, path)`
+
+Identify all default profiles.
+
+
+[ visitation ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`102 1 104 33`
+(signature)`visitation(agent, path)`
+

@@ -1,0 +1,1 @@
+Use SIGINFO to toggle status (subscription vs poll request) display.

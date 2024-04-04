@@ -1,0 +1,129 @@
+! CONTEXT:
+	/title/
+		`C Language Feature Reference`
+	/protocol/
+		&<http://if.fault.io/chapters/log.reference>
+
+A small subset of C's features for recalling the label or usage.
+
+[ Designated Initializers ]
+
+Re-ordered member initialization.
+
+#!syntax/c
+	struct S {
+		member1 int;
+		member2 int;
+	};
+
+	struct S s = {
+		.member2 = 1,
+		.member1 = 0
+	};
+
+[ Array Pointers ]
+
+Parenthesis required to disambiguate from an Array *of* Pointers.
+
+#!syntax/c
+	int (*ia)[2][4] = ptr;
+
+Variable Length Arrays: &<https://en.wikipedia.org/wiki/Variable-length_array#C99>
+
+/(control/titled)`VLA Pointer Usage`/#!syntax/c
+	int
+	f(int n)
+	{
+		/* Runtime allocation. */
+		int (*ia)[n] = malloc(sizeof(int[n]));
+		...
+	}
+
+/(control/titled)`Casts`/#!syntax/c
+	int (*ia)[n] = (int (*)[])ptr;
+
+[ Function Pointers ]
+
+Where `fp` is the variable name.
+
+#!syntax/c
+	int (*fp)(int, char *);
+
+[ Attribute Constructors ]
+
+Initialization and finalization functions.
+
+#!syntax/c
+	__attribute__((constructor))
+	void construct(void)
+	{
+		...
+	}
+
+	__attribute__((destructor))
+	void destruct(void)
+	{
+		...
+	}
+
+C++ attribute syntax:
+
+#!syntax/c
+	[[constructor]]
+	void construct(void)
+	{
+		...
+	}
+
+	[[destructor]]
+	void destruct(void)
+	{
+		...
+	}
+
+/(title)`.init, .ctors, and .init_array`/
+	&<https://maskray.me/blog/2021-11-07-init-ctors-init-array>
+
+[ Bit Fields ]
+
+&<https://en.cppreference.com/w/c/language/bit_field>
+
+[ Diagnostics Control ]
+
+	- &<https://clang.llvm.org/docs/DiagnosticsReference.html>
+	- &<https://clang.llvm.org/docs/UsersManual.html#options-to-control-error-and-warning-messages>
+
+[ > Pragma ]
+
+Control the severity of a diagnostic:
+
+#!syntax/c
+	#pragma [clang|gcc] diagnostic [ignored|warning|error|fatal] "-Wname"
+
+Push and Pop control state:
+
+#!syntax/c
+	#pragma [clang|gcc] diagnostic push
+		#pragma [clang|gcc] diagnostic error "-Wname"
+		...
+	#pragma [clang|gcc] diagnostic pop
+	/* -Wname error is reset after the pop */
+
+[ > Options ]
+
+/clang/#!syntax/shell
+	# Error control.
+	clang -Werror=<diagnostic-event>    # Force errors on <diagnostic-event>
+	clang -Wno-error=<diagnostic-event> # Disable errors on <diagnostic-event>
+
+	# Warnings.
+	clang -W<diagnostic-event>          # Enable warnings on <diagnostic-event>
+	clang -Wno-<diagnostic-event>       # Disable warnings on <diagnostic-event>
+	clang -Wno-everything               # Disable all warnings
+	clang -Weverything                  # Enable all diagnostics.
+
+[ Query ]
+
+/clang/#!syntax/shell
+	# Preprocessor environment.
+	clang -dM -E - < /dev/null

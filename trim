@@ -1,0 +1,4 @@
+#!/bin/sh
+set -x
+git reset "$(git commit-tree 'HEAD^{tree}' -m "First")"
+git push -f origin master

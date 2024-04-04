@@ -1,0 +1,189 @@
+! CONTEXT:
+	/title/
+		`Computer Science and Mathematics Links`
+
+Links that haven't made it into a chapter context yet.
+
+[ Web Logs ]
+
+/MaskRay/
+	&<http://maskray.me/>
+/Marek's Idea of the Day/
+	&<http://idea.popcount.org/>
+/Matt's Ramblings/
+	&<http://matthewearl.github.io/>
+/Muhammad/
+	&<http://muhammadraza.me/>
+/Pablo Arias/
+	&<http://pabloariasal.github.io/>
+/Woodrush/
+	&<http://woodrush.github.io/blog/>
+/Daniel Lemire/
+	&<http://lemire.me/blog/>
+/Trekhleb/
+	&<http://trekhleb.dev/blog/>
+/Andy Pearce/
+	&<http://www.andy-pearce.com/blog/>
+
+[ Resources ]
+
+/Toolchain Links/
+	&<http://www.toolchains.net/>
+
+[ Lambda Calculus ]
+
+/Interpreter/
+	&<http://stephenbalaban.com/a-binary-lambda-calculus-parser-interpreter/>
+/LambdaLISP/
+	&<http://woodrush.github.io/blog/lambdalisp.html>
+
+[ Programming Language Design ]
+
+/(topic)`Homotopy Type Theory`/
+	&<http://en.wikipedia.org/wiki/Homotopy_type_theory>
+
+[ C Programming ]
+
+/Map Macro/
+	&<http://github.com/swansontec/map-macro>
+/Common Structures and Algorithms/
+	&<http://github.com/tezc/sc>
+/TAILQ/
+	&<http://man7.org/linux/man-pages/man3/TAILQ_NEXT.3.html>
+
+[ UNIX Tooling ]
+
+/Useful Sed/
+	&<http://github.com/adrianlarion/useful-sed>
+/Command Line Fu/
+	&<http://www.commandlinefu.com/>
+/Using Commandline To Process CSV files/
+	&<http://muhammadraza.me/2022/data-oneliners/>
+
+[ Kernel Event Interfaces ]
+
+/OpenBSD KQueue/
+	&<http://man.openbsd.org/kqueue.2>
+/KQueue VNODE Usage/
+	&<http://gist.github.com/mattes/3987146>
+/Epoll is Fundamentally Broken/
+	# &<http://idea.popcount.org/2017-02-20-epoll-is-fundamentally-broken-12/>
+	# &<http://idea.popcount.org/2017-03-20-epoll-is-fundamentally-broken-22/>
+
+[ UNICODE ]
+
+/Wikipedia/
+	&<http://en.wikipedia.org/wiki/Universal_Coded_Character_Set>
+
+/libgrapheme/
+	&<http://libs.suckless.org/libgrapheme/>
+
+[ Structured Information Storage and Retrieval ]
+
+/Pipeline Relational Query Language/
+	&<http://github.com/prql/prql>
+
+[ Character Matrix Terminals ]
+
+/Terminal WG/
+	&<http://gitlab.freedesktop.org/terminal-wg>
+/Terminal Capabilities/
+	&<http://go.leonerd.org.uk/terminal-sequences>
+
+/Color Underlines/
+	&<http://github.com/alacritty/alacritty/commit/f4bdf5fb36fdf3b329be8253da39050abe7238a5#diff-fd80aff0a010ff2a1f95375ab05021016b91f803381d8a78b24c5168997dce9b>
+	&<http://sw.kovidgoyal.net/kitty/underlines/>
+
+[ Memory Management ]
+
+/All About Libpas, Phil's Super Fast Malloc/
+	&<http://brianlovin.com/hn/31581727>
+
+[ Coverage ]
+
+/LLVM/
+	&<http://llvm.org/doxygen/classllvm_1_1coverage_1_1CoverageData.html>
+	&<http://llvm.org/docs/CommandGuide/llvm-profdata.html>
+
+[ History ]
+
+/Tandy/
+	&<http://dfarq.homeip.net/what-happened-to-tandy-computers/>
+
+[ Security ]
+
+/CHERI/
+	&<http://www.cl.cam.ac.uk/research/security/ctsrd/cheri/>
+
+[ Linking ]
+
+/ELF Loading and Dynamic Linking/
+	&<http://www.gabriel.urdhr.fr/2015/01/22/elf-linking/>
+
+[ Machine Learning ]
+
+/ChatGPT Resource Index/
+	&<http://saasgpters.com/>
+
+[ LISP ]
+
+/Language Extensions/
+	&<http://www.cliki.net/Language%20extension>
+/LISP-Stat/
+	&<http://lisp-stat.dev/>
+
+	A statistical computing environment written in Common Lisp
+
+[ > Implementations ]
+
+/janet/
+	&<http://janet-lang.org/>
+/sbcl/
+	&<http://www.sbcl.org/>
+/CMUCL/
+	&<http://www.cons.org/cmucl/>
+/tinylisp/
+	&<http://github.com/Robert-van-Engelen/tinylisp>
+/microlisp/
+	&<http://www.ulisp.com/>
+
+[ Legacy Operating Systems ]
+
+[ > Apple ]
+
+/Basilisk II/
+	&<http://github.com/cebix/macemu>
+/System 7/
+	&<http://system7.app/>
+/MacOS 8/
+	&<http://macos8.app/>
+/MacOS 9/
+	&<http://macos9.app/>
+
+[ Languages ]
+
+/Tao/
+	- (control)`property-set`
+	- (time-context)`2020-01-06`
+
+	&<http://github.com/zesterer/tao>
+
+/Cell/
+	- (control)`property-set`
+	- (time-context)`2017-11-28`
+
+	&<http://www.cell-lang.net>
+
+	Functional, relational, reactive programming language.
+
+/Wyvern/
+	- (control)`property-set`
+	- (time-context)`2012-11-20`
+	- (reference)`https://github.com/wyvernlang/wyvern/`
+
+	(resource-indicator)`https://github.com/wyvernlang/wyvern/`
+
+[ Humor ]
+
+/Program in C Song/
+	&<http://www.youtube.com/watch?v=Fm5Ust7vEhk>

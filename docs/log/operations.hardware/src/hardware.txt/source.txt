@@ -1,0 +1,11 @@
+! CONTEXT:
+	/title/
+		`Reference Links`
+
+/Macbook Pro Retina/
+	&<https://support.apple.com/kb/sp653>
+/X86-64/
+	/AMD Phenom/
+		&<https://www.cpu-world.com/CPUs/K10/AMD-Phenom%20II%20X4%20955%20-%20HDX955FBK4DGM.html>
+	/Gigabyte 890GPA/
+		&<https://www.gigabyte.com/Motherboard/GA-890GPA-UD3H-rev-20>

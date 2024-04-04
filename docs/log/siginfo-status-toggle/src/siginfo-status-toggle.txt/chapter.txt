@@ -1,0 +1,8 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+Use SIGINFO to toggle status (subscription vs poll request) display.
+

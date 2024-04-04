@@ -1,0 +1,81 @@
+<html root="2"><head><title>jwp.log.operations.web</title><meta charset="utf-8"/><link as="style" rel="preload" href="../../.legacy-web/core.css"></link><link as="style" rel="preload" href="../../.legacy-web/factor.css"></link><link rel="stylesheet" href="../../.legacy-web/core.css"></link><link rel="stylesheet" href="../../.legacy-web/factor.css"></link></head><body><main><h1><span class="prefix"></span><div class="page-subject"><img class="icon" src="../../.factor-type-icon/if.fault.io/meta-chapter.svg"></img><span class="subject-identifier">web</span><a href="http://if.fault.io/factors/meta.chapter"><code class="type">meta.chapter</code></a></div><div class="page-context"><a href="../"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij48dGV4dCB4PSI0IiB5PSIwLjg4ZW0iIGZvbnQtc2l6ZT0iMjQ4Ij7wn5OcPC90ZXh0Pjwvc3ZnPg=="></img></a><span class="context-identifier">jwp.log</span></div></h1><section class="chapter"></section><section class="unspecified" documented="true" local-identifier="Applications" id="Applications"><h1><span class="prefix"></span><a class="title" href="#Applications"><span class="text.normal">Applications</span></a><span class="abstract-type"></span></h1><dl class="text.mapping"><div id="Applications.Link-Detector" documented="true"><dt><a class="dkn" href="#Applications.Link-Detector"></a><span class="directory-key"><span class="text.normal">Link Detector</span></span></dt><dd><div class="status"></div><p><a class="absolute" href="https://trekhleb.dev/links-detector/">https://trekhleb.dev/links-detector/</a></p><p><span class="text.normal">Identifies and extracts hyperlinks found in images taken from a camera.</span></p></dd></div><div id="Applications.Color-Hex" documented="true"><dt><a class="dkn" href="#Applications.Color-Hex"></a><span class="directory-key"><span class="text.normal">Color Hex</span></span></dt><dd><div class="status"></div><p><a class="absolute" href="https://www.colorhexa.com/">https://www.colorhexa.com/</a></p><p><span class="text.normal">Color encyclopedia.</span></p></dd></div></dl></section><section class="unspecified" documented="true" local-identifier="User Scripts" id="User-Scripts"><h1><span class="prefix"></span><a class="title" href="#User-Scripts"><span class="text.normal">User Scripts</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">Paste into the function body of a new script.</span></p><section class="unspecified" documented="true" local-identifier="Addons" id="User-Scripts.Addons"><h1 class="integrate"><span class="prefix"></span><a class="section" href="#User-Scripts">User Scripts</a><a class="title" href="#User-Scripts.Addons"><span class="text.normal">Addons</span></a><span class="abstract-type"></span></h1><dl class="text.mapping"><div id="User-Scripts.Addons.Safari" documented="true"><dt><a class="dkn" href="#User-Scripts.Addons.Safari"></a><span class="directory-key"><span class="text.normal">Safari</span></span></dt><dd><div class="status"></div><ul class="text.set"><li><p><code class="">MeddleMonkey</code></p></li></ul></dd></div><div id="User-Scripts.Addons.Chrome" documented="true"><dt><a class="dkn" href="#User-Scripts.Addons.Chrome"></a><span class="directory-key"><span class="text.normal">Chrome</span></span></dt><dd><div class="status"></div><ul class="text.set"><li><p><code class="">TamperMonkey</code></p></li></ul></dd></div><div id="User-Scripts.Addons.Firefox" documented="true"><dt><a class="dkn" href="#User-Scripts.Addons.Firefox"></a><span class="directory-key"><span class="text.normal">Firefox</span></span></dt><dd><div class="status"></div><ul class="text.set"><li><p><code class="">TamperMonkey</code></p></li></ul></dd></div></dl></section><section class="unspecified" documented="true" local-identifier="Keyboard Navigation" id="User-Scripts.Keyboard-Navigation"><h1 class="integrate"><span class="prefix"></span><a class="section" href="#User-Scripts">User Scripts</a><a class="title" href="#User-Scripts.Keyboard-Navigation"><span class="text.normal">Keyboard Navigation</span></a><span class="abstract-type"></span></h1><dl class="text.mapping"><div id="User-Scripts.Keyboard-Navigation.ascension" documented="true"><dt><a class="dkn" href="#User-Scripts.Keyboard-Navigation.ascension"></a><span class="directory-key"><code class="">ascension</code></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/javascript">/*
+	// Ascend to the parent directory on `Meta-ArrowUp`.
+	// Optionally, hold `Shift` to clear the query.
+	// Works for `file://` as well, firefox, when matched with `*://*./*`.
+
+	// Probably better as an addon, and I'm not sure why this isn't default functionality.
+
+	// `Meta-ArrowDown` might be useful as well when coupled with either a default
+	// sub-resource or a last sub-resource visited scan. Or go to root site/application.
+*/
+
+function
+ascend_path(ul)
+{
+	// Trim trailing slashes.
+	let path = ul.pathname.replace(/\/*$/, "")
+
+	// Greedily match everything up to the new last slash.
+	ul.pathname = path.match(".*/")[0]
+	return ul
+}
+
+function
+clear_query(ul)
+{
+	// Apparently, can't just overwrite searchParams.
+	ul.searchParams.forEach((value, key) =&#62; {
+		ul.searchParams.delete(key)
+	})
+	return ul
+}
+
+function
+modifier_check(event, ignored)
+{
+	var im
+	for (im in ignored)
+	{
+		if (event.getModifierState(im)) {
+			return true
+		}
+	}
+
+	return false
+}
+
+function
+bind_ascend(target, Key="ArrowUp", Modifier="Meta", EventName="keydown", Ignore=["Alt", "Control"])
+{
+	target.addEventListener(EventName, (event) =&#62; {
+		if (event.key !== Key || !event.getModifierState(Modifier)) {
+			return
+		}
+		else if (modifier_check(event, Ignore)) {
+			return
+		}
+		else {
+			let cq = (x) =&#62; {return x}
+
+			// Recreate location URL and clear hash.
+			let ul = new URL(window.location.href)
+			ul.hash = ""
+
+			// Clear query when shift is present.
+			if (event.getModifierState("Shift")) {
+				cq = clear_query
+			}
+
+			// Trapped, stop further handling.
+			// Arguably not necessary, but avoid race if possible.
+			event.stopImmediatePropagation()
+			event.preventDefault()
+
+			window.location.href = ascend_path(cq(ul))
+		}
+	})
+}
+
+bind_ascend(document)
+
+</code></pre></dd></div></dl></section></section><h1 class="footing"></h1></main></body></html>

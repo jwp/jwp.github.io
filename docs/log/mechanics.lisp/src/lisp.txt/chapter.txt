@@ -1,0 +1,14 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (source/area)``
+! CONTEXT:
+	/title/
+		`LISP Links`
+
+[ CLWiki ]
+
+/Language Extensions/
+	&<https://www.cliki.net/Language%20extension>
+

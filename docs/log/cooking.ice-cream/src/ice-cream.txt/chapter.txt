@@ -1,0 +1,47 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+Notes and links for making ice cream.
+
+[ Ingredients ]
+
+Overview of common ingredients or categories.
+
+- (control/type)`ingredient`
+- Cream
+- Milk
+- Sugar
+- Emulsifier
+- Stabiliser
+- Flavor Components
+
+[ Recipes ]
+
+/Mint Chocolate Chip/
+	- &<https://www.seriouseats.com/best-mint-chocolate-chip-ice-cream-recipe>
+	
+[ References ]
+
+/Underbelly Cooking/
+	- &<https://under-belly.org/category/ice-cream/>
+	
+/Serious Eats/
+	- &<https://www.seriouseats.com/ice-cream-recipes-5117867>
+	
+/Dream Scoops/
+	- &<https://www.dreamscoops.com/>
+	
+/Ice Cream Science/
+	- &<https://icecreamscience.com/>
+	
+	Ran by Ruben of &<http://rogueicecream.co.uk/>
+
+/Ice Cream Tag on Cooking.StackExchange/
+	- &<https://cooking.stackexchange.com/questions/tagged/ice-cream>
+	
+/Science of Cooking/
+	- &<https://www.scienceofcooking.com/science_of_ice_cream.htm>
+	

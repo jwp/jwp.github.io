@@ -1,0 +1,148 @@
+/**
+	# Admonition display support.
+*/
+@charset "utf-8";
+
+span[class="admonition.icon"] {
+	font-size: 200%;
+	font-family: "Apple Color Emoji", sans-serif;
+}
+
+span[class="admonition.severity"] {
+	font-size: 105%;
+	font-weight: bold;
+	font-family: 'Montserrat', sans-serif;
+}
+
+span[class="admonition.icon"]:before {
+	content: "\1F4AC";
+}
+
+div[class="admonition-ERROR"]
+span[class="admonition.icon"]:before {
+	content: "\26D4";
+}
+
+div[class="admonition-DEVELOPER"]
+span[class="admonition.icon"]:before {
+	content: "\1F6A7";
+}
+
+div[class="admonition-WARNING"]
+span[class="admonition.icon"]:before {
+	content: "\26A0";
+}
+
+div[class="admonition-BEGINNER"]
+span[class="admonition.icon"]:before {
+	content: "\1F530";
+}
+
+div[class="admonition-STATUS"]
+span[class="admonition.icon"]:before {
+	content: "\1F4CA";
+}
+
+div[class="admonition-NOTE"]
+span[class="admonition.icon"]:before {
+	content: "\1F5D2";
+}
+
+div[class="admonition-NOTICE"]
+span[class="admonition.icon"]:before {
+	content: "\1F4C3";
+}
+
+div[class|="admonition"] {
+	position: relative;
+	background-color: #1B1B1B; /* inherit some of background */
+	border-color: #383838;
+	border-radius: 4px;
+	border-width: 2px;
+	border-style: groove;
+
+	margin-top: 2em;
+	margin-bottom: 2em;
+	margin-left: auto;
+	margin-right: auto;
+
+	max-width: 64%;
+	font-family: serif;
+
+	/*
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	*/
+}
+
+/* outline glow */
+div[class|="admonition"] {
+	box-shadow: 0px 0px 8px 0px rgba(100, 167, 247, 0.8);
+}
+
+div[class="admonition-ERROR"] {
+	box-shadow: 0px 0px 8px 0px rgba(225, 50, 50, 0.8);
+}
+
+div[class="admonition-WARNING"],
+div[class="admonition-DEVELOPER"] {
+	box-shadow: 0px 0px 8px 0px rgba(225, 225, 20, 0.8);
+}
+
+div[class|="admonition"] > table {
+	width: 100%;
+	display: block;
+	padding: 8px;
+	vertical-align: middle;
+}
+
+/* icon cell */
+div[class|="admonition"] > table > tbody > tr:first-child > td:first-child {
+	padding-right: 1em;
+}
+div[class|="admonition"] > table > tr:first-child > td:last-child {
+}
+div[class|="admonition"] > table > tbody > tr:last-child > td:last-child {
+	width: 100%;
+}
+
+div[class="admonition.content"] {
+	background-color: #393939;
+	width: auto;
+
+	border-width: 2px;
+	border-style: groove;
+	border-color: #505050;
+
+	padding: 2px;
+	padding-left: 8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+
+	margin-top: 0;
+	margin-bottom: 0.75em;
+	margin-right: 0.75em;
+
+	display: relative;
+}
+
+div[class="admonition.content"] > *:first-child {
+	margin-top: 0;
+}
+
+div[class="admonition.content"] > *:last-child {
+	margin-bottom: 0;
+}
+
+div[class="admonition.content"] > * {
+	-webkit-touch-callout: all;
+	-webkit-user-select: all;
+	-khtml-user-select: all;
+	-moz-user-select: all;
+	-ms-user-select: all;
+	user-select: all;
+}

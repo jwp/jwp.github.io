@@ -1,0 +1,60 @@
+<html root="2"><head><title>jwp.log.mechanics.c-features</title><meta charset="utf-8"/><link as="style" rel="preload" href="../../.legacy-web/core.css"></link><link as="style" rel="preload" href="../../.legacy-web/factor.css"></link><link rel="stylesheet" href="../../.legacy-web/core.css"></link><link rel="stylesheet" href="../../.legacy-web/factor.css"></link></head><body><main><h1><span class="prefix"></span><div class="page-subject"><img class="icon" src="../../.factor-type-icon/if.fault.io/meta-chapter.svg"></img><span class="subject-identifier">c-features</span><a href="http://if.fault.io/factors/meta.chapter"><code class="type">meta.chapter</code></a></div><div class="page-context"><a href="../"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij48dGV4dCB4PSI0IiB5PSIwLjg4ZW0iIGZvbnQtc2l6ZT0iMjQ4Ij7wn5OcPC90ZXh0Pjwvc3ZnPg=="></img></a><span class="context-identifier">jwp.log</span></div></h1><section class="chapter"><p><span class="text.normal">A small subset of C's features for recalling the label or usage.</span></p></section><section class="unspecified" documented="true" local-identifier="Designated Initializers" id="Designated-Initializers"><h1><span class="prefix"></span><a class="title" href="#Designated-Initializers"><span class="text.normal">Designated Initializers</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">Re-ordered member initialization.</span></p><pre class="text.syntax"><code class="syntax/c">struct S {
+	member1 int;
+	member2 int;
+};
+
+struct S s = {
+	.member2 = 1,
+	.member1 = 0
+};
+</code></pre></section><section class="unspecified" documented="true" local-identifier="Array Pointers" id="Array-Pointers"><h1><span class="prefix"></span><a class="title" href="#Array-Pointers"><span class="text.normal">Array Pointers</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">Parenthesis required to disambiguate from an Array </span><span class="text.emphasis">of</span><span class="text.normal"> Pointers.</span></p><pre class="text.syntax"><code class="syntax/c">int (*ia)[2][4] = ptr;
+</code></pre><p><span class="text.normal">Variable Length Arrays: </span><a class="absolute" href="https://en.wikipedia.org/wiki/Variable-length_array#C99">https://en.wikipedia.org/wiki/Variable-length_array#C99</a></p><dl class="text.mapping"><div id="Array-Pointers.VLA-Pointer-Usage" documented="true"><dt><a class="dkn" href="#Array-Pointers.VLA-Pointer-Usage"></a><span class="directory-key"><code class="control.titled">VLA Pointer Usage</code></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/c">int
+f(int n)
+{
+	/* Runtime allocation. */
+	int (*ia)[n] = malloc(sizeof(int[n]));
+	...
+}
+</code></pre></dd></div><div id="Array-Pointers.Casts" documented="true"><dt><a class="dkn" href="#Array-Pointers.Casts"></a><span class="directory-key"><code class="control.titled">Casts</code></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/c">int (*ia)[n] = (int (*)[])ptr;
+</code></pre></dd></div></dl></section><section class="unspecified" documented="true" local-identifier="Function Pointers" id="Function-Pointers"><h1><span class="prefix"></span><a class="title" href="#Function-Pointers"><span class="text.normal">Function Pointers</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">Where </span><code class="">fp</code><span class="text.normal"> is the variable name.</span></p><pre class="text.syntax"><code class="syntax/c">int (*fp)(int, char *);
+</code></pre></section><section class="unspecified" documented="true" local-identifier="Attribute Constructors" id="Attribute-Constructors"><h1><span class="prefix"></span><a class="title" href="#Attribute-Constructors"><span class="text.normal">Attribute Constructors</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">Initialization and finalization functions.</span></p><pre class="text.syntax"><code class="syntax/c">__attribute__((constructor))
+void construct(void)
+{
+	...
+}
+
+__attribute__((destructor))
+void destruct(void)
+{
+	...
+}
+</code></pre><p><span class="text.normal">C++ attribute syntax:</span></p><pre class="text.syntax"><code class="syntax/c">[[constructor]]
+void construct(void)
+{
+	...
+}
+
+[[destructor]]
+void destruct(void)
+{
+	...
+}
+</code></pre><dl class="text.mapping"><div id="Attribute-Constructors..init,-.ctors,-and-.init_array" documented="true"><dt><a class="dkn" href="#Attribute-Constructors..init,-.ctors,-and-.init_array"></a><span class="directory-key"><code class="title">.init, .ctors, and .init_array</code></span></dt><dd><div class="status"></div><p><a class="absolute" href="https://maskray.me/blog/2021-11-07-init-ctors-init-array">https://maskray.me/blog/2021-11-07-init-ctors-init-array</a></p></dd></div></dl></section><section class="unspecified" documented="true" local-identifier="Bit Fields" id="Bit-Fields"><h1><span class="prefix"></span><a class="title" href="#Bit-Fields"><span class="text.normal">Bit Fields</span></a><span class="abstract-type"></span></h1><p><a class="absolute" href="https://en.cppreference.com/w/c/language/bit_field">https://en.cppreference.com/w/c/language/bit_field</a></p></section><section class="unspecified" documented="true" local-identifier="Diagnostics Control" id="Diagnostics-Control"><h1><span class="prefix"></span><a class="title" href="#Diagnostics-Control"><span class="text.normal">Diagnostics Control</span></a><span class="abstract-type"></span></h1><ul class="text.set"><li><p><a class="absolute" href="https://clang.llvm.org/docs/DiagnosticsReference.html">https://clang.llvm.org/docs/DiagnosticsReference.html</a></p></li><li><p><a class="absolute" href="https://clang.llvm.org/docs/UsersManual.html#options-to-control-error-and-warning-messages">https://clang.llvm.org/docs/UsersManual.html#options-to-control-error-and-warning-messages</a></p></li></ul><section class="unspecified" documented="true" local-identifier="Pragma" id="Diagnostics-Control.Pragma"><h1 class="integrate"><span class="prefix"></span><a class="section" href="#Diagnostics-Control">Diagnostics Control</a><a class="title" href="#Diagnostics-Control.Pragma"><span class="text.normal">Pragma</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">Control the severity of a diagnostic:</span></p><pre class="text.syntax"><code class="syntax/c">#pragma [clang|gcc] diagnostic [ignored|warning|error|fatal] "-Wname"
+</code></pre><p><span class="text.normal">Push and Pop control state:</span></p><pre class="text.syntax"><code class="syntax/c">#pragma [clang|gcc] diagnostic push
+	#pragma [clang|gcc] diagnostic error "-Wname"
+	...
+#pragma [clang|gcc] diagnostic pop
+/* -Wname error is reset after the pop */
+</code></pre></section><section class="unspecified" documented="true" local-identifier="Options" id="Diagnostics-Control.Options"><h1 class="integrate"><span class="prefix"></span><a class="section" href="#Diagnostics-Control">Diagnostics Control</a><a class="title" href="#Diagnostics-Control.Options"><span class="text.normal">Options</span></a><span class="abstract-type"></span></h1><dl class="text.mapping"><div id="Diagnostics-Control.Options.clang" documented="true"><dt><a class="dkn" href="#Diagnostics-Control.Options.clang"></a><span class="directory-key"><span class="text.normal">clang</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell"># Error control.
+clang -Werror=&#60;diagnostic-event&#62;    # Force errors on &#60;diagnostic-event&#62;
+clang -Wno-error=&#60;diagnostic-event&#62; # Disable errors on &#60;diagnostic-event&#62;
+
+# Warnings.
+clang -W&#60;diagnostic-event&#62;          # Enable warnings on &#60;diagnostic-event&#62;
+clang -Wno-&#60;diagnostic-event&#62;       # Disable warnings on &#60;diagnostic-event&#62;
+clang -Wno-everything               # Disable all warnings
+clang -Weverything                  # Enable all diagnostics.
+</code></pre></dd></div></dl></section></section><section class="unspecified" documented="true" local-identifier="Query" id="Query"><h1><span class="prefix"></span><a class="title" href="#Query"><span class="text.normal">Query</span></a><span class="abstract-type"></span></h1><dl class="text.mapping"><div id="Query.clang" documented="true"><dt><a class="dkn" href="#Query.clang"></a><span class="directory-key"><span class="text.normal">clang</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell"># Preprocessor environment.
+clang -dM -E - &#60; /dev/null
+
+</code></pre></dd></div></dl></section><h1 class="footing"></h1></main></body></html>

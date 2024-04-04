@@ -1,0 +1,186 @@
+! CONTROL:
+	/type/
+		module
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 145 20`
+Merge link records.
+
+
+[ sys ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`4 1 4 10`
+
+[ functools ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`5 1 5 16`
+
+[ hashlib ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`6 1 6 14`
+
+[ process ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`7 1 7 32`
+
+[ Timestamp ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`8 1 8 47`
+
+[ Measure ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`8 1 8 47`
+
+[ sequence ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`10 1 27 3`
+(signature)`sequence(record)`
+
+Construct a sequenced record for serialization.
+
+
+[ structure ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`29 1 35 44`
+(signature)`structure(line)`
+
+Construct a tuple of four fields from the given line.
+
+
+[ merge ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`37 1 69 23`
+(signature)`merge(link, former, latter)`
+
+Merge the fields of identical links recognizing earlier time contexts
+and non-empty fields as preferable.
+
+
+[ slashstrip ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`70 1 71 21`
+(signature)`slashstrip(s)`
+
+
+[ slashagnostic ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`73 1 88 11`
+		- (type/syntax)`str`
+		- (type/invalid/unknown)&<#str>
+		
+(signature)`slashagnostic(f, l)`
+
+Return the preferred link to represent the referent or an empty string
+if they should not be considered equivalent.
+
+Handles trailing-slash cases where nearly identical links are present.
+
+
+[ uhash ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`90 1 107 25`
+(signature)`uhash(link)`
+
+Construct a time delta from the hash of the link.
+
+
+[ stamped ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`109 1 116 2`
+(signature)`stamped(record)`
+
+
+[ processor ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`118 1 139 9`
+(signature)`processor(records)`
+
+Merge duplicate link records; presumes (factor-local/parameter)&<#processor.Parameters.records[records]> is sorted.
+
+
+[ main ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`141 1 146 19`
+		- (type/syntax)`process.Exit`
+		- (type/none/invalid)&<http://fault.io/dev/null[fault.system.process.Exit]>
+		
+(signature)`main(inv)`
+

@@ -1,0 +1,120 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+! CONTEXT:
+	/title/
+		`Web Resources`
+
+[ Applications ]
+
+/Link Detector/
+	&<https://trekhleb.dev/links-detector/>
+
+	Identifies and extracts hyperlinks found in images taken from a camera.
+
+/Color Hex/
+	&<https://www.colorhexa.com/>
+
+	Color encyclopedia.
+
+[ User Scripts ]
+
+Paste into the function body of a new script.
+
+[ > Addons ]
+
+/Safari/
+	- `MeddleMonkey`
+	
+/Chrome/
+	- `TamperMonkey`
+	
+/Firefox/
+	- `TamperMonkey`
+	
+[ > Keyboard Navigation ]
+
+/`ascension`/#!syntax/javascript
+	/*
+		// Ascend to the parent directory on `Meta-ArrowUp`.
+		// Optionally, hold `Shift` to clear the query.
+		// Works for `file://` as well, firefox, when matched with `*://*./*`.
+	
+		// Probably better as an addon, and I'm not sure why this isn't default functionality.
+	
+		// `Meta-ArrowDown` might be useful as well when coupled with either a default
+		// sub-resource or a last sub-resource visited scan. Or go to root site/application.
+	*/
+	
+	function
+	ascend_path(ul)
+	{
+		// Trim trailing slashes.
+		let path = ul.pathname.replace(/\/*$/, "")
+	
+		// Greedily match everything up to the new last slash.
+		ul.pathname = path.match(".*/")[0]
+		return ul
+	}
+	
+	function
+	clear_query(ul)
+	{
+		// Apparently, can't just overwrite searchParams.
+		ul.searchParams.forEach((value, key) => {
+			ul.searchParams.delete(key)
+		})
+		return ul
+	}
+	
+	function
+	modifier_check(event, ignored)
+	{
+		var im
+		for (im in ignored)
+		{
+			if (event.getModifierState(im)) {
+				return true
+			}
+		}
+	
+		return false
+	}
+	
+	function
+	bind_ascend(target, Key="ArrowUp", Modifier="Meta", EventName="keydown", Ignore=["Alt", "Control"])
+	{
+		target.addEventListener(EventName, (event) => {
+			if (event.key !== Key || !event.getModifierState(Modifier)) {
+				return
+			}
+			else if (modifier_check(event, Ignore)) {
+				return
+			}
+			else {
+				let cq = (x) => {return x}
+	
+				// Recreate location URL and clear hash.
+				let ul = new URL(window.location.href)
+				ul.hash = ""
+	
+				// Clear query when shift is present.
+				if (event.getModifierState("Shift")) {
+					cq = clear_query
+				}
+	
+				// Trapped, stop further handling.
+				// Arguably not necessary, but avoid race if possible.
+				event.stopImmediatePropagation()
+				event.preventDefault()
+	
+				window.location.href = ascend_path(cq(ul))
+			}
+		})
+	}
+	
+	bind_ascend(document)
+	

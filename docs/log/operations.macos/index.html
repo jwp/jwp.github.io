@@ -1,0 +1,196 @@
+<html root="2"><head><title>jwp.log.operations.macos</title><meta charset="utf-8"/><link as="style" rel="preload" href="../../.legacy-web/core.css"></link><link as="style" rel="preload" href="../../.legacy-web/factor.css"></link><link rel="stylesheet" href="../../.legacy-web/core.css"></link><link rel="stylesheet" href="../../.legacy-web/factor.css"></link></head><body><main><h1><span class="prefix"></span><div class="page-subject"><img class="icon" src="../../.factor-type-icon/if.fault.io/meta-chapter.svg"></img><span class="subject-identifier">macos</span><a href="http://if.fault.io/factors/meta.chapter"><code class="type">meta.chapter</code></a></div><div class="page-context"><a href="../"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij48dGV4dCB4PSI0IiB5PSIwLjg4ZW0iIGZvbnQtc2l6ZT0iMjQ4Ij7wn5OcPC90ZXh0Pjwvc3ZnPg=="></img></a><span class="context-identifier">jwp.log</span></div></h1><section class="chapter"></section><section class="unspecified" documented="true" local-identifier="Bugs" id="Bugs"><h1><span class="prefix"></span><a class="title" href="#Bugs"><span class="text.normal">Bugs</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">Date App[pid:tid] CoreText note: Client requested name ".SFNSMono-Regular", it will get Times-Roman rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].</span></p><p><span class="text.normal">Correct by installing SFMono:</span><span class="text.line-break"> </span><code class="">open /System/Applications/Utilities/Terminal.app/Resources/Fonts/*</code></p></section><section class="unspecified" documented="true" local-identifier="Recall" id="Recall"><h1><span class="prefix"></span><a class="title" href="#Recall"><span class="text.normal">Recall</span></a><span class="abstract-type"></span></h1><section class="unspecified" documented="true" local-identifier="Set Hostname" id="Recall.Set-Hostname"><h1 class="integrate"><span class="prefix"></span><a class="section" href="#Recall">Recall</a><a class="title" href="#Recall.Set-Hostname"><span class="text.normal">Set Hostname</span></a><span class="abstract-type"></span></h1><pre class="text.syntax"><code class="syntax/shell"># Also, ComputerName and LocalHostName.
+scutil –-set HostName "host.name"
+</code></pre></section><section class="unspecified" documented="true" local-identifier="Code Signatures" id="Recall.Code-Signatures"><h1 class="integrate"><span class="prefix"></span><a class="section" href="#Recall">Recall</a><a class="title" href="#Recall.Code-Signatures"><span class="text.normal">Code Signatures</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">Enable or disable checks:</span></p><pre class="text.syntax"><code class="syntax/shell">spctl --master-disable
+spctl --master-enable
+</code></pre><p><span class="text.normal">Signing:</span></p><pre class="text.syntax"><code class="syntax/shell">codesign -f -s - "/path/to/executable"
+</code></pre></section></section><section class="unspecified" documented="true" local-identifier="Defaults" id="Defaults"><h1><span class="prefix"></span><a class="title" href="#Defaults"><span class="text.normal">Defaults</span></a><span class="abstract-type"></span></h1><dl class="text.mapping"><div id="Defaults.Globals" documented="true"><dt><a class="dkn" href="#Defaults.Globals"></a><span class="directory-key"><span class="text.normal">Globals</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">defaults write -g \
+	ApplePressAndHoldEnabled -bool false \
+	InitialKeyRepeat -int 9 \
+	KeyRepeat -int 1 \
+	NSAutomaticCapitalizationEnabled -bool false \
+	NSDocumentSaveNewDocumentsToCloud -bool false \
+	com.apple.screencapture disable-shadow -bool true \
+</code></pre></dd></div><div id="Defaults.DiskUtility" documented="true"><dt><a class="dkn" href="#Defaults.DiskUtility"></a><span class="directory-key"><span class="text.normal">DiskUtility</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">defaults write com.apple.DiskUtility \
+	DUDebugMenuEnabled -bool true \
+	advanced-image-options -bool true \
+</code></pre></dd></div><div id="Defaults.Terminal" documented="true"><dt><a class="dkn" href="#Defaults.Terminal"></a><span class="directory-key"><span class="text.normal">Terminal</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">defaults write com.apple.terminal \
+	SecureKeyboardEntry -bool true
+</code></pre></dd></div></dl></section><section class="unspecified" documented="true" local-identifier="Bluetooth Bitpool" id="Bluetooth-Bitpool"><h1><span class="prefix"></span><a class="title" href="#Bluetooth-Bitpool"><span class="text.normal">Bluetooth Bitpool</span></a><span class="abstract-type"></span></h1><pre class="text.syntax"><code class="syntax/shell">for x in
+	"Apple Bitpool Max (editable)"
+	"Apple Bitpool Min (editable)"
+	"Apple Initial Bitpool (editable)"
+	"Apple Initial Bitpool Min (editable)"
+	"Negotiated Bitpool"
+	"Negotiated Bitpool Max"
+	"Negotiated Bitpool Min"
+do
+	defaults write com.apple.BluetoothAudioAgent "$x" -int 40
+done
+</code></pre></section><section class="unspecified" documented="true" local-identifier="LLVM" id="LLVM"><h1><span class="prefix"></span><a class="title" href="#LLVM"><span class="text.normal">LLVM</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">On macOS, using the pre-built clang binary has a header conflict (10.15).</span><span class="text.line-break"> </span><span class="text.normal">In order to avoid the issue, the system headers need to be re-ordered:</span></p><pre class="text.syntax"><code class="syntax/shell">cat &#62;clang.options &#60;&#60;EOF
+-isystem/opt/llvm/include
+-isystem/opt/llvm/include/c++/v1
+-isystem/opt/llvm/lib/clang/15.0.0/include
+EOF
+</code></pre><p><span class="text.normal">Where </span><code class="system.directory">/opt/llvm</code><span class="text.normal"> is the installation prefix.</span></p><section class="unspecified" documented="true" local-identifier="Catalina" id="LLVM.Catalina"><h1 class="integrate"><span class="prefix"></span><a class="section" href="#LLVM">LLVM</a><a class="title" href="#LLVM.Catalina"><span class="text.normal">Catalina</span></a><span class="abstract-type"></span></h1><p><span class="text.normal">When C++ compilation has issues:</span></p><pre class="text.syntax"><code class="syntax/shell">cat &#62;clang.options &#60;&#60;EOF
+-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
+-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include
+EOF
+</code></pre><pre class="text.syntax"><code class="syntax/shell">env "CFLAGS=--config $(pwd)/clang.options" ...
+</code></pre><dl class="text.mapping"><div id="LLVM.Catalina.Issues" documented="true"><dt><a class="dkn" href="#LLVM.Catalina.Issues"></a><span class="directory-key"><code class="control.context">Issues</code></span></dt><dd><div class="status"></div><ol class="text.sequence"><li><p><a class="absolute" href="https://stackoverflow.com/questions/58628377/catalina-c-using-cmath-headers-yield-error-no-member-named-signbit-in-th">https://stackoverflow.com/questions/58628377/catalina-c-using-cmath-headers-yield-error-no-member-named-signbit-in-th</a></p></li></ol></dd></div></dl></section></section><section class="filesystem" documented="true" local-identifier="Python" id="Python"><h1><span class="prefix"></span><a class="title" href="#Python"><span class="text.normal">Python</span></a><span class="abstract-type">filesystem</span></h1><p><span class="text.normal">Scripts for maintaining a set of Python installations on macOS.</span><span class="text.line-break"> </span><span class="text.normal">Presumed location: </span><code class="">/Library/Frameworks/Python.framework/Versions</code><span class="text.normal">.</span></p><dl class="text.mapping"><div id="Python.ftp-versions.sh" documented="true"><dt><a class="dkn" href="#Python.ftp-versions.sh"></a><span class="directory-key"><span class="text.normal">ftp-versions.sh</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Get the unique set of 3.x versions from python.org/ftp/python/
+
+MAJOR=3
+ENL='\
+'
+curl -s https://www.python.org/ftp/python/ | \
+	sed "s/[&#60;&#62;]/$ENL/g" | \
+	grep href | \
+	grep -o '\&#60;'"$MAJOR"'\.[0-9]\+\.[0-9]\+\&#62;' | \
+	sort -u
+</code></pre></dd></div><div id="Python.ftp-fix-timecontext.sh" documented="true"><dt><a class="dkn" href="#Python.ftp-fix-timecontext.sh"></a><span class="directory-key"><span class="text.normal">ftp-fix-timecontext.sh</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell"># Reformat ftp download anchors to inject a `date` attribute.
+# Convert the timestamps to something ISO-8601'ish. Absurd.
+sed "$(printf '%s%s%s%s' \
+	's/&#60;a\(.*\)&#60;\/a&#62;[[:space:]]*' \
+	'\([0-9]\{1,2\}\)-\([a-zA-Z]\{3\}\)-\([0-9]*\)' \
+	'.*\([0-9][0-9]:[0-9][0-9]\).*' \
+	'/&#60;a date="\4-\3-\2 \5" \1&#60;\/a&#62;/'
+)" | \
+sed "$(
+	# Build the substitutions for rewriting three character month identifiers
+	# with their corresponding numeric representation.
+	linenum='\([^:]*\):'
+	captures="$(yes '\(.\)' | head -6 | tr -d '\n')"
+	sub='s\/-[\2\5][\3\6][\4\7]-\/-\1-\/'
+	# Initialize months reference file.
+	cd "$(mktemp -d)" || exit
+	echo 'jan feb mar apr may jun jul aug sep oct nov dec' | tr ' ' '\n' &#62;./months
+	# Get uppercase, join with lower; number the lines.
+	# Substitute three character months for their corresponding (line) number.
+	cat ./months | tr '[[:lower:]]' '[[:upper:]]' | lam - months | \
+	grep -n . | sed "s/${linenum}${captures}.*/${sub}/" | tr '\n' ';'
+	rm ./months
+)"
+</code></pre></dd></div><div id="Python.download-versions.sh" documented="true"><dt><a class="dkn" href="#Python.download-versions.sh"></a><span class="directory-key"><span class="text.normal">download-versions.sh</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Get the unique set of 3.x (&#62;3.6) versions from python.org/downloads/
+
+MAJOR=3
+ENL='\
+'
+curl -s 'https://www.python.org/downloads/' | \
+	sed "s/&#60;&#62;/$ENL/g" | \
+	grep -o '\&#60;'"$MAJOR"'\.\([6-9]\|[0-9][0-9]\+\)\.[0-9]\+\&#62;' | \
+	sort -u
+</code></pre></dd></div><div id="Python.latest.sh" documented="true"><dt><a class="dkn" href="#Python.latest.sh"></a><span class="directory-key"><span class="text.normal">latest.sh</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Find the latest release for each major and minor.
+
+sort -t'.' -k1,2 -k3nr | sort -u -t'.' -k1,2 | sort -t'.' -k1nr -k2nr
+</code></pre></dd></div><div id="Python.installed.sh" documented="true"><dt><a class="dkn" href="#Python.installed.sh"></a><span class="directory-key"><span class="text.normal">installed.sh</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+for x in 3.*/
+do
+	$x/bin/python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
+done | sort -t'.' -k1nr -k2nr
+</code></pre></dd></div><div id="Python.mkdelta.sh" documented="true"><dt><a class="dkn" href="#Python.mkdelta.sh"></a><span class="directory-key"><span class="text.normal">mkdelta.sh</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Initialize the Delta directory with the information required by install-sources.
+# Collect installed versions, latest release versions, and join into the update set.
+
+vjoin ()
+{
+	join -t. -o1.2 -o1.3 -o2.3 -1 2 -2 2 "$@" | sed 's/\./ /g'
+}
+
+mkdir Delta || exit
+sh ./ftp-versions.sh | sh ./latest.sh &#62;./Delta/latest-releases
+sh ./installed.sh &#62;./Delta/installed-versions
+vjoin &#62;./Delta/updates \
+	./Delta/installed-versions \
+	./Delta/latest-releases
+</code></pre></dd></div><div id="Python.install-sources.sh" documented="true"><dt><a class="dkn" href="#Python.install-sources.sh"></a><span class="directory-key"><span class="text.normal">install-sources.sh</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Install the sources of the updates designated by mkdelta.
+MAJOR=3
+
+install_source ()
+{
+	vminor="$1"
+	ipatch="$2"
+	lpatch="$3"
+
+	lrelease="${MAJOR}.${vminor}.${lpatch}"
+	ipath="../${MAJOR}.${vminor}/src"
+	echo "[$MAJOR.$vminor.$ipatch] -&#62; $lrelease"
+	if test -e "$ipath"
+	then
+		# Presume build is in progress.
+		echo "-&#62; Skipping; '$ipath' is present."
+		continue
+	fi
+
+	filename="Python-${lrelease}"
+	ri="https://www.python.org/ftp/python/${lrelease}/${filename}.tar.xz"
+
+	# Presume incompletion.
+	rm -f "${filename}.tar.xz" &#38;&#38; fault-tool http-cache "$ri"
+
+	# Extract and get signature.
+	tar zxf "${filename}.tar.xz" || continue
+	shasum -a 512 "${filename}.tar.xz" &#62;"${filename}/.delta-signature"
+	rm -f "${filename}.tar.xz"
+
+	# Commit.
+	mv "${filename}" "$ipath" || exit
+}
+
+cd /Library/Frameworks/Python.framework/Versions
+while read line
+do
+	set -- $line
+	(cd Delta &#38;&#38; install_source "$@")
+done &#60;./Delta/updates
+
+rm -f ./Delta/*
+rmdir ./Delta
+</code></pre></dd></div><div id="Python.integrate.sh" documented="true"><dt><a class="dkn" href="#Python.integrate.sh"></a><span class="directory-key"><span class="text.normal">integrate.sh</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Build and install Python from source (pwd) on macOS.
+# Presumes write permissions on &#38;&#60;file:///Library/Frameworks/Python.framework/Versions&#62;.
+export DYLD_LIBRARY_PATH=/usr/local/lib
+export CC="$(xcrun --toolchain XcodeDefault -f clang)"
+export SDK="$(xcrun --show-sdk-path)"
+
+XCPATH="$(xcode-select --print-path)"
+MAC="$XCPATH/Platforms/MacOSX.platform"
+XCI="$MAC/Developer/SDKs/MacOSX.sdk/usr/include"
+
+# -isystem is important; -I will (sometimes) put macOS' expat ahead of Python's.
+CFLAGS="-F$SDK/System/Library/Frameworks -isystem$XCI"
+CFLAGS="$CFLAGS -include TargetConditionals.h"
+CFLAGS="$CFLAGS -Wno-nullability-completeness -Wno-expansion-to-defined"
+export CFLAGS
+
+if ! : Possible LTO version mismatch.
+then
+	export CC=/opt/llvm/bin/clang
+	export PATH=/opt/llvm/bin:$PATH
+fi
+
+./configure \
+	--disable-test-modules \
+	--with-lto \
+	--without-doc-strings \
+	--with-computed-gotos \
+	--with-openssl=/usr/local \
+	--enable-optimizations \
+	--enable-framework || exit
+
+gmake -j 8 || exit
+gmake install || exit
+</code></pre></dd></div><div id="Python.update.sh" documented="true"><dt><a class="dkn" href="#Python.update.sh"></a><span class="directory-key"><span class="text.normal">update.sh</span></span></dt><dd sole="syntax"><div class="status"></div><pre class="text.syntax"><code class="syntax/shell">#!/bin/sh
+# Update pip and site-packages of each installed version using pip.
+echo $(pwd)
+for x in *.*/
+do
+	PIP="$x/bin/python3 -m pip"
+	echo "-&#62; $PIP"
+	$PIP install -U pip || exit
+	$PIP list --outdated --format=json | jq -r '.[]|.name' | $PIP install -U -r /dev/stdin || exit
+done
+</code></pre></dd></div></dl></section><section class="unspecified" documented="true" local-identifier="10.15" id="10.15"><h1><span class="prefix"></span><a class="title" href="#10.15"><span class="text.normal">10.15</span></a><span class="abstract-type"></span></h1><p><a class="absolute" href="https://apps.apple.com/us/app/macos-catalina/id1466841314">https://apps.apple.com/us/app/macos-catalina/id1466841314</a></p></section><h1 class="footing"></h1></main></body></html>

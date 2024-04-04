@@ -1,0 +1,101 @@
+! CONTROL:
+	/type/
+		module
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 74 0`
+Given sorted visitation records to standard input, combine the records by minimizing the
+earliest visit, maximizing the latest visit, and summing the visit count.
+The combined set will be written to standard output.
+
+
+[ sys ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`7 1 7 10`
+
+[ Timestamp ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`8 1 8 38`
+
+[ utc ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`9 1 9 33`
+
+[ process ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`10 1 10 32`
+
+[ merge ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`12 1 22 2`
+(signature)`merge(former, latter)`
+
+Combine two records regarding the same subject.
+
+
+[ structure ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`24 1 33 2`
+(signature)`structure(line)`
+
+
+[ reduce ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`35 1 53 13`
+(signature)`reduce(records)`
+
+Process visit records.
+
+
+[ main ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`55 1 74 19`
+		- (type/syntax)`process.Exit`
+		- (type/none/invalid)&<http://fault.io/dev/null[fault.system.process.Exit]>
+		
+(signature)`main(inv)`
+
+Merge visitation metrics.
+

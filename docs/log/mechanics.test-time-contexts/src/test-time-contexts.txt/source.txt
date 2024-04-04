@@ -1,0 +1,10 @@
+Discuss LD_PRELOAD usage for controlling a consistent perception of time for runtime analysis.
+
+Overload sleep and clock reads to provide a deterministic perception of time.
+
+Access to the "real time" clock would be provided through test interfaces.
+test.clock.wait(...)?
+test.clock.tell(...)?
+
+test.sleep(...) # "Real" sleep.
+test.time(...) # "Real" time snapshot.

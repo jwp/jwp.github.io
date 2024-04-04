@@ -1,0 +1,1146 @@
+/**
+	// Primary layout of the single sheet (factor) element view.
+*/
+@charset "utf-8";
+
+:root {
+	--directory-key-height: 26px;
+}
+
+p {
+	line-height: 1.12em;
+}
+
+/* Chapter Sections */
+main > section.chapter:not([id]) {
+	display: block;
+	margin: 0;
+	margin-bottom: -1em;
+}
+
+/* Undocumented Elements */
+section[documented="false"] {
+	display: none;
+}
+section[documented="false"]:target {
+	display: unset;
+}
+
+/* Undocumented Parameters */
+dl > div.parameter[documented="false"] {
+	display: none;
+}
+dl > div.parameter[documented="false"]:target {
+	display: unset;
+}
+
+a.invalid > span:after {
+	content: 'x';
+	color: var(--invalid-link);
+	font-size: 70%;
+	margin-left: 2px;
+	vertical-align: sub;
+}
+
+a.product-local {
+	text-decoration-color: #ffb347;
+}
+
+a.context-local {
+}
+
+a.factor-local {
+	text-decoration-color: #77dd77;
+}
+
+a.project-local {
+	text-decoration-color: #b19cd9;
+}
+
+a:not([class='title']) > span {
+	font-family: monospace;
+	font-size: 120%;
+}
+
+a:not([class='title']) > span.classmethod:after,
+a:not([class='title']) > span.staticmethod:after,
+a:not([class='title']) > span.method:after,
+a:not([class='title']) > span.procedure:after,
+a:not([class='title']) > span.function:after
+{
+	content: '()';
+	color: var(--link-type-indicator);
+}
+
+/* Link that was not identified as being local. */
+a.absolute {
+	font-family: monospace;
+	text-decoration: underline;
+	text-decoration-color: #0366bd;
+}
+
+span.superscript {
+	font-size: 32%;
+	vertical-align: top;
+	display: inline-block;
+}
+
+span[class="xml.literal"] {
+	text-decoration: underline;
+}
+
+li>*:first-child {
+	margin-top: 0.25em;
+}
+li>*:last-child {
+	margin-bottom: 0.25em;
+}
+
+h1 {
+	color: var(--element-titles);
+	font-family: monospace;
+	vertical-align: middle;
+	font-size: 128%;
+	font-weight: normal;
+}
+
+section.unspecified > h1 {
+	color: var(--element-titles);
+	font-weight: normal;
+	font-family: sans-serif;
+	vertical-align: middle;
+}
+
+p:empty {
+	display: none;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	text-underline-offset: 2px;
+}
+
+a.section-reference {
+	white-space: pre;
+}
+
+a.section-reference:before {
+	content: '[';
+	color: var(--link-type-indicator);
+	font-size: 120%;
+}
+
+a.section-reference:after {
+	content: ']';
+	color: var(--link-type-indicator);
+	font-size: 120%;
+}
+
+dl > div > dd[sole="syntax"] {
+	margin-left: 2em;
+	max-width: 100%;
+}
+
+dd {
+	max-width: 54%;
+}
+dd dd {
+	max-width: 48%;
+}
+dd dd dd {
+	max-width: 42%;
+}
+
+table {
+	padding: 0;
+	border-width: 0;
+	border-spacing: 0;
+}
+
+code {
+	display: inline-block;
+
+	font-family: monospace;
+	font-size: 110%;
+}
+
+section > p {
+	max-width: 50em;
+}
+
+p > code {
+	max-height: 1.2em; /* Limit effect box on paragraphs. */
+	background-color: var(--box);
+
+	border: 1px solid rgba(0,0,0,1);
+	border-width: 2px;
+	border-radius: 3px;
+
+	padding: 1px;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+
+pre {
+	white-space: pre;
+	width: 80%;
+	margin: 0 auto;
+	display: block;
+	background-color: #101010;
+	font-family: monospace;
+	font-size: medium;
+	padding: 2px;
+
+	border-width: 2px;
+	tab-size: 4;
+	-moz-tab-size: 4;
+}
+
+ul {
+	list-style-type: square;
+}
+
+/**
+	# The last identifier in the title providing an href to itself
+*/
+div.title > a.terminal {
+	font-weight: bold;
+}
+
+/**
+	# Special case for blue links
+*/
+a:hover span.identifier {
+	color: #FFFFFF;
+	text-shadow:
+		0px 0px 8px rgba(55, 130, 230, 1),
+		0px 0px 8px rgba(55, 130, 230, 1),
+		0px 0px 8px rgba(55, 130, 230, 1);
+}
+
+a[class="text.reference"]:hover,
+a:visited:hover, a:hover {
+	color: #FFFFFF;
+	text-shadow:
+		0px 0px 8px rgba(55, 130, 230, 1),
+		0px 0px 8px rgba(55, 130, 230, 1),
+		0px 0px 8px rgba(55, 130, 230, 1);
+}
+
+a.dkn:hover {
+	color: var(--link-hover);
+}
+
+section:target > h1 {
+	;
+}
+
+section:target > h1 > span.abstract-type {
+	color: var(--target-highlighting);
+}
+
+section.class > h1 > a.title {
+	font-size: 140%;
+}
+
+section > h1 code.type {
+	font-size: 84%;
+	font-family: monospace;
+	font-weight: normal;
+}
+
+html {
+	background-color: var(--root);
+	color: var(--text);
+
+	font-family: "Arial", sans-serif;
+	font-size: 14px;
+}
+
+body {
+	margin: 0px;
+}
+
+body > main {
+	background-color: var(--sheet);
+
+	margin: 0 auto;
+	margin-top: 12px;
+	margin-bottom: 12px;
+
+	min-width: 16em;
+	max-width: 80em;
+
+	padding-top: 0.25em;
+	padding-bottom: 1.5em;
+
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(80, 80, 80, 0.8);
+
+	box-shadow: 4px 0px 12px 4px rgba(0, 0, 0, 0.8);
+	z-index: 16;
+}
+
+main > h1:first-child {
+	margin-block-start: 0;
+}
+
+
+main > h1 {
+	display: flex;
+	overflow: hidden;
+	position: relative;
+	flex-direction: row;
+	flex-wrap: nowrap !important;
+	align-items: stretch;
+	align-content: start;
+	white-space: nowrap;
+
+	font-family: sans-serif;
+	font-size: 240%;
+
+	background-color: #1D1D1D;
+	text-shadow: 1px 2px 1px rgba(0, 0, 0, 1);
+
+	padding: 4px;
+	margin-left: -1px;
+	margin-right: -1px;
+
+	border-style: solid;
+	border-width: 1px;
+
+	border-color: #3A3A3A;
+	border-right-color: #121212;
+	border-left-color: #121212;
+}
+
+main > h1 > div.page-subject {
+	flex: 32 0 max-content;
+	overflow: hidden;
+
+	/* Force limit for Project icon. */
+	max-width: calc(100% - 1em);
+}
+
+/* Align icon and type reference. */
+main > h1 > div.page-subject > a {
+	vertical-align: 3;
+}
+
+/* The content insertions are magnified, so balance it for the title. */
+main > h1 > div.page-subject > a > code.type {
+	font-size: 80%;
+	user-select: none;
+}
+
+main > h1 > div.page-context {
+	flex: 0 32 max-content;
+	overflow: hidden;
+
+	margin-left: auto;
+	min-width: 1em;
+}
+
+main > h1 > span.title {
+	margin-left: 0.2em;
+}
+main > h1 img.icon {
+	width: 0.9em;
+	height: 0.9em;
+	margin-right: 0.2em;
+}
+
+section > h1 {
+	position: relative;
+
+	background-color: #1D1D1D;
+	text-shadow: 1px 2px 1px rgba(0, 0, 0, 1);
+
+	padding-top: 6px;
+	padding-bottom: 4px;
+	padding-left: 0.4em;
+	padding-right: 8px;
+
+	margin-bottom: 4px;
+	margin-left: -1px;
+	margin-right: -1px;
+
+	border-style: solid;
+	border-width: 1px;
+
+	border-color: #3A3A3A;
+	border-right-color: #121212;
+	border-left-color: #121212;
+
+	overflow: clip;
+}
+
+span.icon {
+	margin-left: 4px;
+	margin-right: 4px;
+	display: inline-block;
+	vertical-align: middle;
+	text-shadow: 0px 2px 2px rgba(255,255,255,0.1);
+}
+
+img.icon {
+	width: 1.2em;
+	height: 1.2em;
+	vertical-align: middle;
+	user-select: none;
+}
+div.factor > div.title > span[class="selected-fragment"]::before {
+	content: '#';
+}
+
+div.navigation {
+	width: 90%;
+	margin: auto;
+	margin-top: 0.5cm;
+}
+
+div.navigation > div[class="subfactors"] {
+	width: 100%;
+	font-size: 140%;
+	overflow: hidden;
+}
+
+div[id] div[id]:hover {
+	border-color: rgba(114, 159, 229, 0.50);
+}
+
+/*
+	# Visual tag
+*/
+span.tag {
+	border-width: 1px;
+	height: 100%;
+	vertical-align: middle;
+	margin-left: 2px;
+	margin-right: 2px;
+	font-size: small;
+	font-family: monospace;
+}
+
+span.tag span.text {
+	border-radius: 8px 0px 0px 8px;
+	border-style: inset;
+	border-width: 1px;
+	border-color: rgba(100, 100, 100, 0.2);
+	border-width-right: 0;
+
+	height: 100%;
+	padding-left: 7px;
+	padding-right: 4px;
+	color: black;
+	background: lightgray;
+}
+
+span.tag span.type {
+	border-radius: 0px 4px 4px 0px;
+	border-style: inset;
+	font-weight: bold;
+
+	height: 100%;
+	padding-right: 6px;
+	padding-left: 6px;
+
+	color: #66cc66;
+	background: black;
+
+	border-color: rgba(0, 0, 0, 0.6);
+
+	border-width: 2px;
+	border-width-left: 1px;
+	border-style-left: solid;
+}
+
+dl > div.parameter > dt > code.parameter {
+	display: inline-flex;
+	font-weight: bold;
+	font-size: 120%;
+}
+
+code.type::before {
+	content: '[';
+	font-size: 120%;
+}
+
+code.type::after {
+	content: ']';
+	font-size: 120%;
+}
+
+code.type {
+	color: #898989;
+}
+
+dd>*:first-child {
+	margin-block-start: 0em;
+}
+
+div[class="syntax."] {
+	width: 100%;
+	margin-bottom: 2em;
+}
+
+div[class="syntax."] > pre {
+	box-shadow: inset 0 0 16px #000000;
+	padding-right: 8px;
+	background-color: rgba(0,0,0,0.2);
+	border-width: 1px;
+	border-color: rgba(100,100,100,0.3);
+	font-size: small;
+	font-family: monospace;
+	overflow: hidden;
+}
+
+span[class="line.count"]:hover {
+	font-size: medium;
+}
+
+span[class="line.count"] {
+	vertical-align: top;
+	font-size: xx-small;
+	color: #606060;
+}
+
+.antiselect {
+	-webkit-touch-callout: text;
+	-webkit-user-select: text;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+
+span.identifier {
+	font-family: monospace;
+	font-size: 128%;
+	color: rgb(115, 160, 230);
+	display: inline-block;
+}
+
+/* Identifier Context Name (class name of method, module name of function) */
+span.identity-context {
+	color: gray;
+	font-size: 90%;
+}
+
+span.internal {
+	display: none;
+}
+
+main section.unspecified > h1 > a.section {display: none;}
+h1 > a.section {position: relative; font-size: 64%;}
+h1 > a.section:after {content: '.';}
+
+h1 > span.factor-type {
+	float: right;
+	font-family: cursive;
+	font-size: 82%;
+	user-select: none;
+	color: gray;
+	line-height: 1em;
+}
+
+/**
+	# Sections inside of elements.
+*/
+main section > section.unspecified {
+	border-width: 0px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #1A1A1A;
+}
+
+/* Need the varying depths to override other selectors */
+section > h1.integrate,
+section > section.unspecified > h1.integrate,
+section > section > section.unspecified > h1.integrate
+{
+	/*
+		# Sections identified as minor subsections
+		# that should not be given visual breaks.
+	*/
+	background-color: inherit;
+	border-width: 0px;
+	margin-top: 4px;
+	margin-left: 4px;
+	margin-right: 4px;
+
+	font-size: 104%;
+	font-variant: all-small-caps;
+	color: var(--integrated-titles);
+}
+
+h1 > span.abstract-type {
+	float: right;
+	font-family: cursive;
+	font-size: 72%;
+	color: gray;
+	user-select: none;
+	text-shadow: none;
+}
+
+div[class="section"] > div.title:before
+{
+	content: var(--section-icon);
+	margin-right: 0.5em;
+	padding-left: 0.5em;
+}
+
+span.inline {
+	border-width: 1px;
+	background-color: black;
+	padding: 1px;
+	font-family: monospace;
+}
+
+span.signature:before {
+	content: '(';
+}
+
+span.signature:after {
+	content: ')';
+}
+
+span.sequence-delimiter:last-child {
+	display: none;
+}
+
+span.path-delimiter, span.sequence-delimiter,
+span.delimiter, span.assignment { font-size: medium; }
+
+/*
+	# Adds some space after comma's.
+*/
+span.sequence-delimiter {
+	margin-right: 0.5em;
+}
+
+div.head {
+	display: none;
+}
+
+section.class {
+	margin-top: 3em;
+}
+
+none#navigation {
+	position: fixed;
+	right: 0;
+	top: 2px;
+	max-width: 2.5in;
+}
+
+div.inheritance {
+	float: right;
+}
+
+div.representation {
+	margin-top: 1em;
+	margin-left: 2em;
+	font-family: monospace;
+}
+
+main section {
+	margin-top: 2em;
+}
+
+/**
+	# Normal section content offset.
+*/
+main section>*:not(section):not(article):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(pre)
+{
+	margin-left: 12px;
+	margin-right: 8px;
+}
+
+main section.unspecified > h1 {
+	font-size: 150%;
+}
+
+main > section section:not([class="unspecified"]) > h1 > a.title {
+	font-weight: bold;
+}
+
+main section > section.unspecified > h1 {
+	font-size: 135%;
+}
+
+main section > section > section.unspecified > h1 {
+	font-size: 125%;
+}
+
+main section > section > section > section.unspecified > h1 {
+	font-size: 120%;
+}
+
+a:not([class='section-reference']) > span[class="ern"]:before {
+	vertical-align: top;
+	content: "&";
+}
+
+a[href="#X-INVALID-REFERENCE"] > span[class="ern"]:before {
+	vertical-align: top;
+	content: "x";
+	color: red;
+}
+
+span[class="path.directory"] {
+	color: gray;
+}
+span[class="path.file.name"] {
+	color: teal;
+}
+span[class="path.line.number"] {
+	color: orange;
+}
+span[class="path.line.number"]:before {
+	content: ':';
+}
+
+span[class="ern"] {
+	vertical-align: top;
+	font-size: xx-small;
+	color: var(--link-type-indicator);
+	margin-left: 1px;
+}
+
+pre[class="text.syntax"] > code {
+	border-width: 0px;
+	border-radius: 0;
+
+	font-family: monospace;
+	font-size: medium;
+	max-width: 85%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+pre[class="text.syntax"] {
+	box-shadow: inset 0 0 16px #000000;
+	background-color: #1A1A1A;
+	border-width: 2px;
+	border-color: rgba(121, 121, 121, 0.2);
+	border-style: solid;
+	padding: 8px;
+	margin-left: 48px;
+	overflow: scroll;
+}
+
+/* Avoid redundant indentation for sole syntax directory entries. */
+dd > pre[class="text.syntax"]:first-child:last-child {
+	margin-left: 0;
+}
+
+div[class^="frame.instructions"] {
+	display: none;
+}
+
+div[class^="frame.source" and class~="collapsed"] > pre {
+	color: red;
+	background-color: yellow;
+}
+
+div[class^="frame.source"] > pre {
+	box-shadow: inset 0 0 16px #000000;
+	background-color: rgba(0,0,0,0.2);
+	border-width: 1px;
+	border-color: rgba(100,100,100,0.3);
+	max-width: 85%;
+	padding: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+}
+
+div[class^="frame.source"] > pre > code > span[class="source.line.focus"] {
+	color: orange;
+}
+
+div[class^="frame.source"][class$=" collapsed"] > pre > code > span[class="source.line"] {
+	display: none;
+}
+
+span[class="text.emphasis"] {
+	font-style: italic;
+}
+
+span[class="text.emphasis.heavy"] {
+	font-weight: bolder;
+}
+
+/*
+	# Emphasis weight of 3 or higher
+*/
+span[class="text.emphasis.excessive"] {
+	font-weight: bold;
+}
+
+/*
+	# Emphasis weight of -3 or lower
+*/
+span[class="text.emphasis.insignificant"] {
+	font-weight: light;
+}
+
+dl.text > dd {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	padding-left: 4em;
+}
+
+dl.text > dt {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	font-size: larger;
+	font-family: monospace;
+}
+
+dl.text > dd > *:first-child {
+	margin-top: 4px;
+}
+
+/* Directory item indicator */
+dl a.dkn {
+	display: inline-block;
+	color: var(--directory-item-symbol);
+
+	font-family: sans-serif;
+	font-size: 115%;
+
+	padding: 0;
+	margin-left: 2px;
+	margin-right: 2px;
+
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+	background-color: var(--box);
+
+	width: var(--directory-key-height);
+	height: var(--directory-key-height);
+	line-height: var(--directory-key-height);
+
+	vertical-align: middle;
+	text-align: center;
+
+	max-width: 2em;
+	max-height: 2em;
+	min-width: 16px;
+	min-height: 16px;
+
+	/* Withdraw */
+	border-style: none;
+	background-color: inherit;
+}
+
+dl a.dkn img.icon {
+	margin-top: 3px;
+}
+
+/* Allow local overrides for the handle's representation. */
+dl a.dkn:empty:before {
+	content: var(--directory-arrow);
+}
+
+dl dt > a.dkn {
+}
+
+dt > .directory-key {
+	font-weight: 500;
+	margin-left: 0.2em;
+
+	vertical-align: middle;
+}
+
+/* Method, Function, Procedure Parameter Controls */
+dl > div.parameter {
+	border-width: 0px;
+	border-style: solid;
+	border-color: #1C1C1C;
+	border-bottom-width: 0;
+	border-left-width: 0;
+	border-right-width: 0;
+	padding-top: 2px;
+}
+dl > div.parameter > dd {
+}
+
+dl > div.parameter > dt > a.dkn {
+	text-shadow: none;
+}
+
+section:not(.unspecified) > section[local-identifier='Parameters'] > dl > div > dt > a.dkn:before {
+	content: var(--parameter-type);
+	margin-right: 2px;
+	font-stretch: 100%;
+}
+section:not(.unspecified) > section[local-identifier='Returns'] > dl > div > dt > a.dkn:before {
+	content: var(--return-type);
+	margin-right: 2px;
+	font-stretch: 100%;
+}
+section:not(.unspecified) > section[local-identifier='Exceptions'] > dl > div > dt > a.dkn:before {
+	content: var(--exception-type);
+	margin-right: 8px;
+	font-stretch: 100%;
+}
+section:not(.unspecified) > section[local-identifier='Effects'] > dl > div > dt > a.dkn:before {
+	content: var(--effect-type);
+	margin-right: 8px;
+	font-stretch: 100%;
+}
+
+span.tab {
+	background-color: rgba(0, 0, 0, 0.3);
+	color: gray;
+
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 0 0 2px 2px;
+	border-color: gray;
+	padding: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin-right: 4px;
+	border-top-width: 0;
+	font-family: monospace;
+}
+
+span.tab:hover {
+	color: white;
+}
+
+dl.table-view {
+	display: grid;
+	grid-template-columns: max-content auto;
+}
+
+dl.table-view > dt {
+	grid-column-start: 1;
+}
+
+dl.table-view > dd {
+	grid-column-start: 2;
+}
+
+dl.table-view {
+	display: flex;
+
+	flex-flow: row;
+	flex-wrap: wrap;
+	max-width: 84%;
+
+	overflow: visible;
+}
+
+dl.table-view dt {
+	flex: 1 2 24%;
+	text-overflow: ellipsis;
+
+	overflow: hidden;
+}
+
+dl.table-view dd {
+	flex: 2 1 64%;
+
+	margin-left: auto;
+	text-align: left;
+	text-overflow: ellipsis;
+
+	overflow: hidden;
+}
+
+/* Title Parallel Area */
+h1 > div.parallel {
+	display: inline-block;
+	position: relative;
+	width: 101%;
+}
+
+h1 > div.parallel > div.left {
+	position: absolute;
+	right: 100%;
+}
+
+h1 > div.parallel > div.right {
+	position: absolute;
+	left: 100%;
+}
+
+dl > div:target > dt > a.dkn {
+	font-size: 130%;
+	color: var(--target-highlighting);
+}
+
+*:target a.dkn {
+	color: var(--target-highlighting);
+}
+
+div.subject-reference-display {
+	border-color: rgb(120,120,120);
+	border-radius: 4px;
+	border-style: solid;
+	border-width: 1px;
+	border-top-width: 0;
+
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 8px;
+	padding-bottom: 2px;
+
+	margin: 1.5em;
+	margin-top: -6px;
+
+	background-color: rgba(255, 255, 255, 0.15);
+	font-family: monospace;
+}
+
+time.stamp {
+	display: inline-block;
+
+	font-size: 90%;
+	font-family: monospace;
+	border-width: 1px;
+	border-color: var(--box-border);
+	border-style: solid;
+	background-color: var(--box);
+	padding: 2px;
+}
+
+time.stamp[precision!="day"]:before {
+	content: var(--clock-icon);
+	padding-right: 2px;
+}
+
+time.stamp[precision="year"]:before,
+time.stamp[precision="month"]:before,
+time.stamp[precision="day"]:before {
+	content: var(--calendar-icon);
+	padding-right: 2px;
+}
+
+/* Visually break the main element without exiting. */
+main > div.sheet-break {
+	width: 100%;
+	margin-top: 2em;
+	position: relative;
+
+	border-top: solid 1px rgba(80, 80, 80, 0.8);
+	border-bottom: solid 1px rgba(80, 80, 80, 0.8);
+}
+
+main > div.sheet-break > div.sheet-exit {
+	position: relative;
+	z-index: 8;
+	width: 100%;
+	height: 0px;
+
+	box-shadow:
+		4px 0px 12px 4px rgba(0, 0, 0, 0.9),
+		4px 0px 12px 4px rgba(0, 0, 0, 0.9);
+	clip-path: inset(0px -24px -24px -16px);
+}
+
+main > div.sheet-break > div.sheet-void {
+	height: 2.4em;
+
+	position: relative;
+	z-index: 4;
+	width: calc(100% + 48px);
+
+	margin-left: -16px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+
+	background-color: #444;
+}
+
+main > div.sheet-break > div.sheet-continue {
+	position: relative;
+	z-index: 8;
+	width: 100%;
+	height: 0px;
+
+	box-shadow:
+		4px 0px 12px 4px rgba(0, 0, 0, 0.9),
+		4px 0px 12px 4px rgba(0, 0, 0, 0.9);
+	clip-path: inset(-16px -24px 0px -12px);
+}
+
+/*
+	// Time Context Properties
+*/
+
+div.status {
+	display: flex;
+	overflow: hidden;
+	position: relative;
+	flex-direction: row;
+	flex-wrap: nowrap !important;
+	align-items: center;
+	align-content: center;
+	white-space: nowrap;
+	margin-left: -2.4em;
+}
+
+div.status > * {
+	margin: 0;
+}
+
+div.status > time.stamp {
+	--column: 'time-context';
+	padding: 0px;
+	padding-left: 1px;
+	padding-right: 1px;
+	height: var(--directory-key-height);
+
+	line-height: var(--directory-key-height);
+	vertical-align: middle;
+	text-align: center;
+
+	border-left-width: 0;
+	padding-left: 4px;
+
+	filter: brightness(0.7) grayscale(0.5);
+
+	/* Withdraw */
+	border-style: none;
+	background-color: inherit;
+}
+
+div.status > time.stamp[positional-relation="-1"] {
+	margin-right: 0.5em;
+}
+
+div.status > time.stamp[positional-relation="+1"] {
+	margin-left: 0.5em;
+}
+
+/*
+	// Site sections for link indexes.
+*/
+
+div.status > code.resource-indicator {
+	--column: 'uri-text';
+
+	padding-left: 1em;
+	max-width: 100%;
+	white-space: nowrap;
+	text-overflow: clip;
+	overflow: hidden;
+
+	/* Withdraw emphasis to avoid distracting from the title. */
+	filter: brightness(0.5);
+	border-width: 0px;
+	background-color: inherit;
+}

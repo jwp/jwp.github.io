@@ -1,0 +1,52 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+! CONTEXT:
+	/title/
+		`That's Not Which`
+
+The ubiquitous (system/command)`which` system command is not defined by POSIX.
+
+Practically, this is not a problem on modern systems. It's usually available and if it weren't,
+it's trivial to implement in the language of your choice.
+
+[ Specified Alternative ]
+
+There is a specified alternative that has received attention on the orange site in the past:
+`command -v`. There is one problem with this alternative: it's not `which`. `which` finds
+an executable matching the given name in (system/environment)`PATH`.
+`command -v` does this as well, but there is one extra feature you get: it tells you the "location" of
+shell built-ins, aliases, and functions. This can create problems when your script is *specifically*
+looking for an executable *file's* location. Happen to be looking for an executable *file* named
+after a builtin? Happen to have a function with the same name as the executable *file* you're looking
+for? `command -v` will report success and happily feed the name back to you.
+
+[ Relevance ]
+
+When I use the `which` command, I'm doing one of two things.
+
+# Checking for the presence of an executable *file*.
+# Getting the location of an executable *file*.
+
+`command -v` offers the possibility a false positive in both cases. The general use case
+here is common when probing the system for executables **that will not be ran by the shell**.
+
+If you are running the reported command in the shell, then `command -v`
+**is** the correct
+method given that you want the shell environment to be able to override the raw executable.
+
+[ Worse Yet ]
+
+Some shells have been identifying `which` as a built-in that is equivalent to `command -v`.
+`which` isn't even `which` in some contexts. All the more reason to only use `#!/bin/sh`
+and hope that it's not incorrectly mapped to another flavor.
+
+[ References ]
+
+It is specified that `command -v` will report success on aliases, functions, and builtins:
+
+- &<https://pubs.opengroup.org/onlinepubs/9699919799/utilities/command.html>
+
