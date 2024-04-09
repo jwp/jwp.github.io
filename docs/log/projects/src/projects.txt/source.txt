@@ -1,0 +1,67 @@
+[ fault.io ]
+
+Works in progress.
+
+[ > fault.kernel Isolation ]
+
+# Re-implement system.images to dispatch invocations directly.
+# Isolate fault.kernel and fault.web into a new corpus (volatile?)
+
+[ > Coverage Reporting ]
+
+- Implement reporting annotations for summary data (test fates and coverage percentages).
+
+[ > Source Reduced Project Protocol ]
+
+FIP for integrated projects allowing sources to be reduced. .types/variants#factor-type/factor-name
+
+[ > Terminal ]
+
+- Better span control for ' " () [] {}.
+- Navigation: Jump to Next/Previous indentation increment
+- Redirection support for system command (take input from document memory/vertical range)
+- Sole Hold (clipboard like thing) annotation primarily for supporting horizontal moves.
+
+[ > Kernel Transactions ]
+
+- Isolate transaction management from transaction contexts by splitting purpose:
+. two (transaction) Context subclasses, Dispatch and Mechanism. Dispatch is the manager
+. class that exclusively responds to transaction completion events and Mechanism dispatches
+. processor networks.
+
+[ > Python ]
+
+/fault.transcript/
+	- For transfers, use usage to show the rate and processed for the aggregate size.
+	- Rewrite status display to show top-N process based on recent activity.
+	. A screen full of counters is too much information, so focus on giving additional
+	. details up to some limit.
+
+/fault.test/
+	- Alter fault.test.analyze to unconditionally track contentions and absurdities (errors)
+	. For performance tests, this count field will be used for iterations. This leaves
+	. inner duration as the last new field.
+
+/fault.range/
+	- Use RangeMapping to implement element identification using the syntax area.
+	. The root elements form the first layer; a match causes descent and pushes the first element
+	. into the path allowing all container to be identified when resolving an element.
+
+/system/
+	- test.io.i-kernel.test_octets_bind is racing or timing out. (May have been a darwin bug)
+	- test.io locks up freebsd; zombie processes (The tests causing this are being skipped, atm)
+	- Add system text encoding to text.
+	- Try to reduce runtime extension.
+	- Change f.system.execution interfaces to be named after the device they read from:
+	. execution.stdout(inv) -> stdout, execution.stderr(inv) -> stderr.
+	. execution.statuscode(inv) -> exit_code
+	. Where stdout captures stderr in parallel and reports the image on non-zero exit.
+	. Where stderr disables stdout and defaults stdin to /dev/null.
+
+/security/
+	- Integrate into python/system; no plans outside of transport security.
+	- rewrite MemoryError's into something appropriate for Transports.
+	- Improve openssl X509 introspection.
+	- select next protocol support.
+	- Transport security allocation parameters: security-context-id and role identifier.
+	. Disposition is defined by the stored context.
