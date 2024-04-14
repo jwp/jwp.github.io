@@ -1,0 +1,30 @@
+! CONTROL:
+	/type/
+		module
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 5 0`
+
+[ defaults ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 2 31`
+(signature)`defaults(agent, path)`
+
+
+[ visitation ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`4 1 5 31`
+(signature)`visitation(agent, path)`
+

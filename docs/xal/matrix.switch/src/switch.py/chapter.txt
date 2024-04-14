@@ -1,0 +1,199 @@
+! CONTROL:
+	/type/
+		module
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 149 22`
+Select and execute a processor for the resource list given to standard input.
+
+
+[ sys ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`4 1 4 10`
+
+[ dataclass ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`5 1 5 40`
+
+[ field ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`5 1 5 40`
+
+[ process ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`6 1 6 32`
+
+[ files ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`7 1 9 10`
+
+[ Resource ]
+! CONTROL:
+	/type/
+		class
+	/element/
+		- (control)`property-set`
+		- (source/area)`10 1 17 16`
+! INHERIT:
+	- (control)`property-set`
+	- (source/area)`10 16 10 21`
+	- (type/syntax)`object`
+	- (type/invalid/unknown)&<#object>
+	
+Fields available for selecting processing methods.
+
+
+[ Unrecognized ]
+! CONTROL:
+	/type/
+		class
+	/element/
+		- (control)`property-set`
+		- (source/area)`19 1 30 31`
+! INHERIT:
+	- (control)`property-set`
+	- (source/area)`19 20 19 28`
+	- (type/syntax)`Exception`
+	- (type/invalid/unknown)&<#Exception>
+	
+Could not identify how to process resource.
+
+
+[ Unrecognized >> __init__ ]
+! CONTROL:
+	/type/
+		method
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`24 2 25 27`
+(signature)`__init__(self, resource)`
+
+
+[ Unrecognized >> __str__ ]
+! CONTROL:
+	/type/
+		method
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`27 2 30 31`
+(signature)`__str__(self)`
+
+
+[ reflectcase ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`32 1 39 55`
+(signature)`reflectcase(r)`
+
+cat; presumed tsv.
+
+
+[ jsoncase ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`41 1 72 4`
+(signature)`jsoncase(r)`
+
+json.mozilla or json.github-stars
+
+
+[ htmlcase ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`74 1 84 52`
+(signature)`htmlcase(r)`
+
+tidy | xsltproc anchors.xsl
+
+
+[ textcase ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`86 1 126 16`
+(signature)`textcase(r)`
+
+Prefer JSON, but check for TSV as well.
+
+
+[ cases ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`128 1 138 1`
+#!source
+	cases = {
+		'text/plain': textcase,
+	
+		'text/json': jsoncase,
+		'application/json': jsoncase,
+		'application/x-lz4+json': jsoncase,
+	
+		'text/html': htmlcase,
+		'text/xml': htmlcase,
+		'application/xhtml+xml': htmlcase,
+	}
+
+[ main ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`140 1 150 21`
+		- (type/syntax)`process.Exit`
+		- (type/none/invalid)&<http://fault.io/dev/null[fault.system.process.Exit]>
+		
+(signature)`main(inv)`
+
+Execute corresponding processors sequentially.
+

@@ -1,0 +1,393 @@
+! CONTROL:
+	/type/
+		module
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 423 20`
+Normalize and filter link data.
+
+[ Adjustments ]
+
+/link/
+	- Force "insecure" schemes, ftp and http for consistency. (Publish with +s as desired)
+	- Optionally, filter by exact match or by prefix (pygtrie).
+	
+/time-context/
+	- Convert into `ISO-8601` strings.
+	- Adjust precision when the point falls outside of limits.
+	
+/icon/
+	- Transparent
+	
+/titles/
+	- Normalize title whitespaces.
+	- Optionally, remove many emoji characters. (incomplete range list)
+	- Filter titles that are trivially redundant with the link itself.
+	
+
+[ sys ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`18 1 18 10`
+
+[ functools ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`19 1 19 16`
+
+[ Iterable ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`20 1 20 36`
+
+[ TypeAlias ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`21 1 21 38`
+
+[ Callable ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`21 1 21 38`
+
+[ process ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`23 1 23 32`
+
+[ recognition ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`24 1 24 36`
+
+[ Timestamp ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`27 1 27 47`
+
+[ Measure ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`27 1 27 47`
+
+[ utc ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`28 1 28 33`
+
+[ normal ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`30 1 33 1`
+#!source
+	normal = {
+		'https': 'http',
+		'ftps': 'ftp',
+	}
+
+[ _unicode_emoji_context ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`35 1 68 18`
+(signature)`_unicode_emoji_context()`
+
+
+[ demoji ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`70 1 101 13`
+(signature)`demoji(string)`
+
+Destroy emojis and most sequences found in the (factor-local/parameter)&<#demoji.Parameters.string[string]>.
+
+
+[ relink ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`105 1 131 23`
+(signature)`relink(link)`
+
+Normalize the link in order to maximize reductions.
+Trigger filtering with empty string returns.
+
+
+[ time_limits ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`134 1 137 1`
+#!source
+	time_limits = (
+		Timestamp.of(year=1900),
+		utc().elapse(year=1).truncate('year'),
+	)
+
+[ restamp ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`139 1 170 10`
+(signature)`restamp(ts)`
+
+Interpret the timestamp, (factor-local/parameter)&<#restamp.Parameters.ts[ts]>, as a (none/invalid)&<http://fault.io/dev/null[fault.time.types.Timestamp]> instance.
+Parsing an `ISO-8601` formatted string or
+converting a decimal unix epoch string.
+
+When the interpreted timestamp is outside of the (factor-local/parameter)&<#restamp.Parameters.limits[limits]>,
+adjust the precision until it falls within.
+
+[ > Returns ]
+
+The interpreted (none/invalid)&<http://fault.io/dev/null[fault.time.types.Timestamp]> instance truncated to the minute.
+
+
+[ retitle ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`173 1 184 2`
+(signature)`retitle(title)`
+
+Normalize the whitespace in (factor-local/parameter)&<#retitle.Parameters.title[title]>.
+
+
+[ sequence ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`186 1 204 3`
+(signature)`sequence(record)`
+
+Construct a sequenced record for serialization.
+
+
+[ structure ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`206 1 212 44`
+(signature)`structure(line)`
+
+Construct a tuple of four fields from the given line.
+
+
+[ trailing ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`214 1 234 13`
+(signature)`trailing(link)`
+
+Normalize host references to include trailing slash.
+
+
+[ normalize ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`236 1 272 29`
+(signature)`normalize(records)`
+
+
+[ rewrite ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`274 1 291 51`
+(signature)`rewrite(find, records)`
+
+Adjust the prefixes on the given records.
+
+
+[ rewriting ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`293 1 318 39`
+(signature)`rewriting(rwt)`
+
+Construct a filter rewriting the prefixes defined in (factor-local/parameter)&<#rewriting.Parameters.rwt[rwt]>.
+
+Rewrites to (invalid/unknown)&<#None> are discarded.
+
+
+[ ignoring ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`320 1 321 50`
+(signature)`ignoring(values, records)`
+
+
+[ scanning ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`323 1 330 10`
+(signature)`scanning(v, records)`
+
+
+[ interpret_filters ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`332 1 366 38`
+(signature)`interpret_filters(files)`
+
+Load the filter files and emit the constructed filters.
+
+
+[ restricted ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`368 1 370 1`
+#!source
+	restricted = {
+		'-E': ('field-replace', True, 'title-strip-emoji'),
+	}
+
+[ required ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`371 1 375 1`
+#!source
+	required = {
+		'-X': ('sequence-append', 'text-filters'),
+		'-f': ('sequence-append', 'function-false-filters'),
+		'-F': ('sequence-append', 'function-true-filters'),
+	}
+
+[ python_filters ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`377 1 390 14`
+(signature)`python_filters(filtertype, freferences, series)`
+
+
+[ main ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`392 1 424 19`
+		- (type/syntax)`process.Exit`
+		- (type/none/invalid)&<http://fault.io/dev/null[fault.system.process.Exit]>
+		
+(signature)`main(inv)`
+

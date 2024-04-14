@@ -1,0 +1,1 @@
+[[["txt"], ["formats"]], [{"syntax": "lsf.types.factor@'meta.chapter'", "area": [[24, 8], [24, 38]]}, {"syntax": "{\n\t'http://if.fault.io/factors/meta': [\n\t\t('chapter', 'txt', 'fault-1', 'kleptic'),\n\t],\n}", "area": [[25, 11], [29, 1]]}]]

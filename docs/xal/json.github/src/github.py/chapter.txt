@@ -1,0 +1,77 @@
+! CONTROL:
+	/type/
+		module
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 51 0`
+Converter for &<http://github.com/user/starred>.
+(project-local/unknown)&<json.gh-allstars> can be used to get a full list.
+
+
+[ json ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`5 1 5 11`
+
+[ chain ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`6 1 6 27`
+
+[ Iterable ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`7 1 7 36`
+
+[ transform ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`9 1 19 33`
+(signature)`transform(star)`
+
+Construct link-quad from a github star record.
+
+
+[ sequence ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`21 1 34 4`
+		- (type/syntax)`Iterable[str]`
+		
+(signature)`sequence(records)`
+
+Transform link-quads into serializable data records.
+
+
+[ star_fields ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`36 1 45 12`
+(signature)`star_fields(data)`
+
+Whether `repo` and `name` are in (factor-local/parameter)&<#star_fields.Parameters.data[data]>.
+

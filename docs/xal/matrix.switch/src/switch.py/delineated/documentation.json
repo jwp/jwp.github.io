@@ -1,0 +1,1 @@
+[["Select and execute a processor for the resource list given to standard input."], ["Fields available for selecting processing methods."], ["Could not identify how to process resource."], ["cat; presumed tsv."], ["json.mozilla or json.github-stars"], ["tidy | xsltproc anchors.xsl"], ["Prefer JSON, but check for TSV as well."], ["Execute corresponding processors sequentially."]]

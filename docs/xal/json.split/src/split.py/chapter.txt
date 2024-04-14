@@ -1,0 +1,54 @@
+! CONTROL:
+	/type/
+		module
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 29 0`
+Split a JSON array into a directory of files.
+
+Primarily used to normalize the depth of a collection so that
+(project-local/unknown)&<json.shape> can identify the protocol without descent.
+
+
+[ os ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`7 1 7 14`
+
+[ json ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`8 1 8 11`
+
+[ fs ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`10 1 25 22`
+(signature)`fs(target, data)`
+
+Distribute the array elements into files named after their 1-based index.
+Expects the (factor-local/parameter)&<#fs.Parameters.target[target]> path to already exist.
+
+[ > Parameters ]
+
+/(parameter)`target`/
+	
+	The directory to place the indexes into.
+
+/(parameter)`data`/
+	
+	The sequence to distribute.
+

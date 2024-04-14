@@ -1,0 +1,1 @@
+[[["cases"]], [{"syntax": "{\n\t'text/plain': textcase,\n\n\t'text/json': jsoncase,\n\t'application/json': jsoncase,\n\t'application/x-lz4+json': jsoncase,\n\n\t'text/html': htmlcase,\n\t'text/xml': htmlcase,\n\t'application/xhtml+xml': htmlcase,\n}", "area": [[128, 9], [138, 1]]}]]

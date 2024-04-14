@@ -1,0 +1,331 @@
+! CONTROL:
+	/type/
+		module
+	/element/
+		- (control)`property-set`
+		- (source/area)`1 1 279 0`
+Traverse the JSON document looking for objects that appear to be hyperlinks.
+
+
+[ json ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`4 1 4 11`
+
+[ collections ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`5 1 5 18`
+
+[ chain ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`6 1 6 27`
+
+[ dataclass ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`7 1 7 40`
+
+[ field ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`7 1 7 40`
+
+[ Mapping ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`8 1 8 45`
+
+[ Iterable ]
+! CONTROL:
+	/type/
+		import
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`8 1 8 45`
+
+[ time_fields ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`11 1 16 1`
+#!source
+	time_fields = [
+		'dateAdded',
+		'date-added',
+		'lastModified',
+		'lastAccessed',
+	]
+
+[ uri_fields ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`18 1 23 1`
+#!source
+	uri_fields = [
+		'uri',
+		'url',
+		'iri',
+		'href',
+	]
+
+[ title_fields ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`25 1 28 1`
+#!source
+	title_fields = [
+		'title',
+		'name',
+	]
+
+[ ignore ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`31 1 35 2`
+#!source
+	ignore = set([
+		'place',
+		'about',
+		'moz-extension',
+	])
+
+[ extension_fields ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`38 1 40 1`
+#!source
+	extension_fields = [
+		'children',
+	]
+
+[ jlz4_header ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`43 1 43 28`
+#!source
+	jlz4_header = b'mozLz40\x00'
+
+[ jlz4_header_size ]
+! CONTROL:
+	/type/
+		data
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`44 1 44 35`
+#!source
+	jlz4_header_size = len(jlz4_header)
+
+[ decompress ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`46 1 54 43`
+		- (type/syntax)`Iterable[bytes]`
+		
+(signature)`decompress(reader)`
+
+lz4json decompression for mozilla session storage and backups.
+
+Defers import of (pypi.org/package)&<lz4> until usage.
+
+
+[ link_escapes ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`56 1 61 26`
+(signature)`link_escapes(link)`
+
+Force percent escaped tabs.
+
+
+[ link_normalize ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`63 1 83 24`
+(signature)`link_normalize(link)`
+
+Strip whitespace and filter (mozilla) internal schemes.
+
+
+[ structure ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`85 1 107 35`
+(signature)`structure(src)`
+
+Load the json data; transparently handles LZ4 compressed json.
+
+
+[ exclude ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`109 1 122 13`
+(signature)`exclude(windows)`
+
+Filter closed tabs in the window records.
+
+
+[ internal ]
+! CONTROL:
+	/type/
+		function
+	/flags/
+		- `undocumented`
+	/element/
+		- (control)`property-set`
+		- (source/area)`124 1 144 13`
+(signature)`internal(link, record)`
+
+
+[ find ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`146 1 190 15`
+(signature)`find(struct)`
+
+Find all the links in the given data.
+
+
+[ transform ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`192 1 217 30`
+(signature)`transform(ld)`
+
+Convert the link and (json) object pair into a tuple for sequencing.
+
+
+[ sequence ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`219 1 232 4`
+		- (type/syntax)`Iterable[str]`
+		
+(signature)`sequence(records)`
+
+Transform link-quads into serializable data records.
+
+
+[ session_fields ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`234 1 250 12`
+(signature)`session_fields(data)`
+
+Whether (factor-local/parameter)&<#session_fields.Parameters.data[data]> appears to be a session.
+
+
+[ bookmarks_fields ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`252 1 262 12`
+(signature)`bookmarks_fields(data)`
+
+Whether (factor-local/parameter)&<#bookmarks_fields.Parameters.data[data]> appears to be a bookmark export.
+
+
+[ entry_fields ]
+! CONTROL:
+	/type/
+		function
+	/element/
+		- (control)`property-set`
+		- (source/area)`264 1 274 12`
+(signature)`entry_fields(data)`
+
+Whether (factor-local/parameter)&<#entry_fields.Parameters.data[data]> appears to have resource indicator data.
+
