@@ -4,6 +4,8 @@
 	/element/
 		- (control)`property-set`
 		- (source/area)`1 1 103 34`
+		- (coverage-zeros)`0`
+		- (coverage-counters)`0`
 Retrieve mozilla profile paths using the default selection, index number, or name.
 
 

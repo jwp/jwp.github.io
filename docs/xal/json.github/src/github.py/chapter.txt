@@ -4,6 +4,8 @@
 	/element/
 		- (control)`property-set`
 		- (source/area)`1 1 51 0`
+		- (coverage-zeros)`0`
+		- (coverage-counters)`0`
 Converter for &<http://github.com/user/starred>.
 (project-local/unknown)&<json.gh-allstars> can be used to get a full list.
 

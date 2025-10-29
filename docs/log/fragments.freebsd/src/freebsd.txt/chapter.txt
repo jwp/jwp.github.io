@@ -1,0 +1,85 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+		- (coverage-zeros)`0`
+		- (coverage-counters)`0`
+! CONTEXT:
+	/title/
+		`FreeBSD System Administration`
+
+Most of this is reference for desktop workstation administration.
+
+[ Serial ]
+
+[ > Configure Serial Console ]
+
+#!syntax/image
+	#!/usr/bin/env update-file /boot/loader.conf
+	boot_multicons="YES"
+	boot_serial="YES"
+	comconsole_speed="115200"
+	console="comconsole,vidconsole"
+	
+[ > References ]
+
+- &<https://forums.freebsd.org/threads/using-usb-serial-adapter-for-console-output.69759/>
+
+[ Disks, Partitions, and Filesystems ]
+
+[ > List Disks ]
+
+#!syntax/shell
+	geom disk list
+	
+[ > List Partitions ]
+
+#!syntax/shell
+	gpart show
+	
+[ > Initialize disk with FAT32 ]
+
+Copied from FreeBSD hints.
+
+#!syntax/shell
+	gpart create -s MBR /dev/#
+	gpart add -t fat32 /dev/#
+	newfs_msdos -F 32 -L thumbdrive-title /dev/#s1
+	
+[ > Update ZFS Bootcode ]
+
+#!syntax/shell
+	# `-i 2` being the normal freebsd-boot slice and `ada` being the disk's device.
+	# Without an EFI partition, this may be `-i 1`.
+	gpart bootcode -b /boot/pmbr -p /boot/gptzfsboot -i 2 ada
+	
+[ > References ]
+
+- &<https://www.cyberciti.biz/faq/freebsd-hard-disk-information/>
+- &<https://www.ronny-mueller.com/2024/01/02/howto-update-the-zfs-bootcode-after-zfs-update/>
+- &<https://forums.freebsd.org/threads/update-of-the-bootcodes-for-a-gpt-scheme-x64-architecture.80163/>
+- &<https://forums.freebsd.org/threads/how-to-add-freebsd-to-efibootmgr.88977/>
+
+[ MacBook ]
+
+- &<https://forums.freebsd.org/threads/macbook-pro-early-2013-macbookpro10-1-status.54456/>
+
+[ USB ]
+
+[ > Power Control ]
+
+#!syntax/shell
+	usbconfig -d ugen0.1 power_off
+	usbconfig -d ugen0.1 power_on
+	
+[ > Query Description ]
+
+#!syntax/shell
+	usbconfig -d ugen0.1 dump_device_desc
+	
+[ > References ]
+
+- &<https://forums.freebsd.org/threads/controlling-usb-device-power-off-save-at-boot.60454/>
+

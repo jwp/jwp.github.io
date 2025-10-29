@@ -1,0 +1,44 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+		- (coverage-zeros)`0`
+		- (coverage-counters)`0`
+! CONTEXT:
+	/title/
+		`Hardware Accelerated Graphics Controls`
+
+[ Environment Variables ]
+
+[ > Disable Vertical Sync ]
+
+#!syntax/shell
+	vblank_mode=0 __GL_SYNC_TO_VBLANK=0
+	
+[ > Force Software Rendering ]
+
+#!syntax/shell
+	LIBGL_ALWAYS_SOFTWARE=1
+	
+[ > References ]
+
+&<https://stackoverflow.com/questions/17196117/disable-vertical-sync-for-glxgears>
+
+[ Video Decoding ]
+
+[ > AMD ]
+
+#!syntax/shell
+	env RADV_PERFTEST=video_decode mpv --gpu-context=x11vk --vo=gpu-next --gpu-api=vulkan --hwdec=vulkan
+	
+[ > Intel ]
+
+#!syntax/shell
+	env ANV_VIDEO_DECODE=1 mpv --gpu-context=x11vk --vo=gpu-next --gpu-api=vulkan --hwdec=vulkan
+	
+[ > References ]
+
+&<https://github.com/mpv-player/mpv/discussions/13909>
+

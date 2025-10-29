@@ -1,0 +1,31 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+		- (coverage-zeros)`0`
+		- (coverage-counters)`0`
+! CONTEXT:
+	/title/
+		`Serial Communications`
+
+Links and information regarding serial protocols. Primarily, RS232, UART, and TTL.
+
+[ History ]
+
+- &<https://electronics.stackexchange.com/questions/682435/how-were-standard-serial-port-baud-rates-chosen>
+
+[ Reference ]
+
+/FreeBSD Related Serial Documentation and Usage/
+	- &<https://docs.freebsd.org/en/articles/serial-uart/>
+	- &<https://forums.freebsd.org/threads/using-usb-serial-adapter-for-console-output.69759/>
+	- &<https://forums.freebsd.org/threads/serial-console-blocks-hangs-at-speeds-9600-baud.50903/page-2>
+	
+/GNU Screen with Serial Port Devices/
+	- &<https://stackoverflow.com/questions/41266001/screen-dev-ttyusb0-with-different-options-such-as-databit-parity-etc>
+	
+/RS232 serial null modem cable wiring/
+	- &<https://www.lammertbies.nl/comm/info/rs-232-null-modem>
+	

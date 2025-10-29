@@ -4,6 +4,8 @@
 	/element/
 		- (control)`property-set`
 		- (source/area)`1 1 74 0`
+		- (coverage-zeros)`0`
+		- (coverage-counters)`0`
 Given sorted visitation records to standard input, combine the records by minimizing the
 earliest visit, maximizing the latest visit, and summing the visit count.
 The combined set will be written to standard output.

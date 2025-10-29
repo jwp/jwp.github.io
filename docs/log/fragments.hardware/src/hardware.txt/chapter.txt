@@ -1,0 +1,16 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+		- (coverage-zeros)`0`
+		- (coverage-counters)`0`
+[ Mac Part Identifiers ]
+
+/USB Type-C Ports for M3 Air/
+	`821-03673-A`
+
+/Lithium Ion Battery/
+	`661-26150`
+

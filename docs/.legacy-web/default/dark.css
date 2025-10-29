@@ -22,4 +22,10 @@
 	--link-type-indicator: cornflowerblue;
 	--invalid-link: red;
 	--target-highlighting: #fdfd96;
+
+	/* Coverage */
+	--incompletion-count: #ff6961;
+	--element-status: white;
+	--completed: gray;
+	--completion-percentage: #77dd77;
 }

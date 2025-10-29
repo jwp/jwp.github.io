@@ -4,6 +4,8 @@
 	/element/
 		- (control)`property-set`
 		- (source/area)``
+		- (coverage-zeros)`0`
+		- (coverage-counters)`0`
 ! CONTEXT:
 	/title/
 		`Cooking and Food Links`

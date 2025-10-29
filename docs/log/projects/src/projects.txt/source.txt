@@ -2,10 +2,99 @@
 
 Works in progress.
 
+[ > Command Misdirection ]
+
+Pipe integration operator for performing command substitution into a temporary
+fs FIFO that is associated with the standard input of the executed structured literal.
+Anonymous pipes would be preferred, but using temporary FIFOs would allow seamless
+integration with filesystem tooling. cmd 2>{subcmd}?
+
+[ > Command Substitution ]
+
+Implement command substitution.
+
+Allow sub-commands to be expanded prior to the execution of the primary.
+
+[ > Controller Lock States ]
+
+Implement lock conditions for controlling view behavior.
+
+Explicit locks for holding the prompt, current command, and other states.
+Handled similarly to the status modifiers.
+Store on views.Structure.
+
+[ > Double Buffer Performance ]
+
+Optimize double buffer usage of &macos-cocoa.
+
+macos-cocoa currently implements a double buffer by performing a full copy back to the off screen
+buffer in order to bring it up to date. When changes are large, a full memcpy may be more efficient,
+but when they're small, it is likely, or at least possible, that patching the stale buffer would
+have superior performance.
+
+[ > Frame Stencils ]
+
+Implement configuration for managing frame layout presets.
+
+[ > Monomial-1 Project Protocol ]
+
+Implement monomial-1 project protocol.
+
+When projects are very simple, it may be the case that only one factor is being published.
+Requiring project content demands superfluous identities to be created and referenced in
+such cases.
+
+Monomial projects are single factor path abstractions with multiple types that can be addressed
+directly in cases of ambiguity.
+
+[ > Parallel Instructions ]
+
+Implement parallel instruction execution.
+
+Allow vector expansions to trigger parallel executions instead of integrating the fields.
+
+[ > Per-syntax Type Character Binds ]
+
+Implement syntax type local bindings for custom character insertions.
+
+[ > PWD Redirection ]
+
+Implement working directory redirections.
+
+Traditionally, shells would make use of subshells in order to perform such functions without
+affecting the calling environment. The prompt's command syntax does not offer subshells, so
+provide a redirect-like syntax to allow convenient working directory switching for single
+command cases.
+
+[ > Reference Cursors ]
+
+Implement reference cursors for secondary ranges to be used with redirections.
+
+Reference cursor: an additional types.Cursor managed by Refraction instances to provide a single
+level of storage for cursor status.
+Notably, this would allow for expressive transformations: str op <& >= or joins str op 4<& <= >>=
+
+[ > Search based revision selection ]
+
+Implement reverse search for prompts and locations.
+
+Allow revisions to be searched and selected based on a user specified filter.
+
+[ > Span Pickup ]
+
+Implement span take and place for character range motion.
+
+Selection based move and copy operations are currently limited to line ranges. This rigidity
+severely limits the efficiency of very simple move operations. Take and place operate on the
+character range to make small moves or copies quick and painless.
+
 [ > fault.kernel Isolation ]
 
 # Re-implement system.images to dispatch invocations directly.
 # Isolate fault.kernel and fault.web into a new corpus (volatile?)
+
+Kernel is fairly experimental. If other projects become well defined, isolation
+may be necessary.
 
 [ > Coverage Reporting ]
 
@@ -19,8 +108,9 @@ FIP for integrated projects allowing sources to be reduced. .types/variants#fact
 
 - Better span control for ' " () [] {}.
 - Navigation: Jump to Next/Previous indentation increment
-- Redirection support for system command (take input from document memory/vertical range)
 - Sole Hold (clipboard like thing) annotation primarily for supporting horizontal moves.
+- Wayland support. (pango + cairo, mostly input handling changes from xcb)
+- SDL support. (pango + cairo, mostly input handling changes from xcb)
 
 [ > Kernel Transactions ]
 
@@ -48,10 +138,7 @@ FIP for integrated projects allowing sources to be reduced. .types/variants#fact
 	. into the path allowing all container to be identified when resolving an element.
 
 /system/
-	- test.io.i-kernel.test_octets_bind is racing or timing out. (May have been a darwin bug)
-	- test.io locks up freebsd; zombie processes (The tests causing this are being skipped, atm)
 	- Add system text encoding to text.
-	- Try to reduce runtime extension.
 	- Change f.system.execution interfaces to be named after the device they read from:
 	. execution.stdout(inv) -> stdout, execution.stderr(inv) -> stderr.
 	. execution.statuscode(inv) -> exit_code
@@ -59,7 +146,7 @@ FIP for integrated projects allowing sources to be reduced. .types/variants#fact
 	. Where stderr disables stdout and defaults stdin to /dev/null.
 
 /security/
-	- Integrate into python/system; no plans outside of transport security.
+	- Integrate into python/system and python/kernel; no plans outside of transport security.
 	- rewrite MemoryError's into something appropriate for Transports.
 	- Improve openssl X509 introspection.
 	- select next protocol support.

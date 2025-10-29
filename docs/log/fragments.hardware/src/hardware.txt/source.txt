@@ -1,0 +1,6 @@
+[ Mac Part Identifiers ]
+
+/USB Type-C Ports for M3 Air/
+	`821-03673-A`
+/Lithium Ion Battery/
+	`661-26150`

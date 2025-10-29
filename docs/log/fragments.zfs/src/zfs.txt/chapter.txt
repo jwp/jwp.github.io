@@ -1,0 +1,23 @@
+! CONTROL:
+	/type/
+		factor
+	/element/
+		- (control)`property-set`
+		- (source/area)``
+		- (coverage-zeros)`0`
+		- (coverage-counters)`0`
+! CONTEXT:
+	/title/
+		`ZFS Procedures`
+
+[ References ]
+
+/How Data is Stored on-disk with ZFS/
+	&<https://jrs-s.net/2018/04/11/primer-how-data-is-stored-on-disk-with-zfs/>
+
+/ZFS replication vs rsync/
+	&<http://kb.unixservertech.com/unix/freebsd/zfs_backups>
+
+/ZFS tuning cheat sheet/
+	&<https://jrs-s.net/2018/08/17/zfs-tuning-cheat-sheet/>
+

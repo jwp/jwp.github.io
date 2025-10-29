@@ -4,6 +4,8 @@
 	/element/
 		- (control)`property-set`
 		- (source/area)``
+		- (coverage-zeros)`0`
+		- (coverage-counters)`0`
 Collection of projects, thoughts, notes, and references.
 
 Much of the content here is an experiment evaluating factor representations as a means

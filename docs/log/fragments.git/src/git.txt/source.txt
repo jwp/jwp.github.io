@@ -1,0 +1,25 @@
+! CONTEXT:
+	/title/
+		`git source code management`
+
+[ Operations ]
+
+[ > Merging Repositories ]
+
+&<https://stackoverflow.com/questions/1425892/how-do-you-merge-two-git-repositories>
+
+[ > Uncommit ]
+
+&<https://www.generacodice.com/en/articolo/813170/how-can-i-uncommit-the-last-commit-in-a-git-bare-repository>
+
+[ > Reset Differences ]
+
+&<https://stackoverflow.com/questions/3528245/whats-the-difference-between-git-reset-mixed-soft-and-hard/3528483#3528483>
+
+[ Configuration ]
+
+[ > Disable Checkout Hook ]
+
+#!syntax/shell
+	[core]
+		hooksPath = /dev/null

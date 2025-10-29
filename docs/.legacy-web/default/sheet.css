@@ -280,6 +280,7 @@ body > main {
 	border-width: 1px;
 	border-style: solid;
 	border-color: rgba(80, 80, 80, 0.8);
+	border-radius: 4px;
 
 	box-shadow: 4px 0px 12px 4px rgba(0, 0, 0, 0.8);
 	z-index: 16;
@@ -578,8 +579,44 @@ section > section > section.unspecified > h1.integrate
 	color: var(--integrated-titles);
 }
 
-h1 > span.abstract-type {
+/* Normally, coverage reporting; generally completion progress. */
+h1 span.element-status {
+	vertical-align: super;
+	font-size: 54%;
+	color: var(--element-status);
+	font-family: monospace;
+}
+
+h1 span.element-status > span.misses {
+	color: var(--incompletion-count);
+	user-select: none;
+}
+h1 span.element-status > span.completion-isolation:after {
+	content: ':';
+	color: var(--completed);
+	user-select: none;
+}
+h1 span.element-status > span.nothing-missed {
+	color: var(--completed);
+	user-select: none;
+}
+h1 span.element-status > span.completion {
+	color: var(--completion-percentage);
+	user-select: none;
+}
+
+/* Text and links on the other side of the title. */
+h1 > div.factor-element-meta {
 	float: right;
+	text-align: bottom;
+}
+
+/* Compensate for element production. */
+div.element-status > span.misses:after {
+	content: ' ';
+}
+
+span.abstract-type {
 	font-family: cursive;
 	font-size: 72%;
 	color: gray;
