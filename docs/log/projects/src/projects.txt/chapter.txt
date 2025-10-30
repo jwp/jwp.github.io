@@ -6,9 +6,7 @@
 		- (source/area)``
 		- (coverage-zeros)`0`
 		- (coverage-counters)`0`
-[ fault.io ]
-
-Works in progress.
+[ Terminal ]
 
 [ > Command Misdirection ]
 
@@ -31,29 +29,9 @@ Explicit locks for holding the prompt, current command, and other states.
 Handled similarly to the status modifiers.
 Store on views.Structure.
 
-[ > Double Buffer Performance ]
-
-Optimize double buffer usage of (invalid/unknown)&<#macos-cocoa>.
-
-macos-cocoa currently implements a double buffer by performing a full copy back to the off screen
-buffer in order to bring it up to date. When changes are large, a full memcpy may be more efficient,
-but when they're small, it is likely, or at least possible, that patching the stale buffer would
-have superior performance.
-
 [ > Frame Stencils ]
 
 Implement configuration for managing frame layout presets.
-
-[ > Monomial-1 Project Protocol ]
-
-Implement monomial-1 project protocol.
-
-When projects are very simple, it may be the case that only one factor is being published.
-Requiring project content demands superfluous identities to be created and referenced in
-such cases.
-
-Monomial projects are single factor path abstractions with multiple types that can be addressed
-directly in cases of ambiguity.
 
 [ > Parallel Instructions ]
 
@@ -96,68 +74,72 @@ Selection based move and copy operations are currently limited to line ranges. T
 severely limits the efficiency of very simple move operations. Take and place operate on the
 character range to make small moves or copies quick and painless.
 
-[ > fault.kernel Isolation ]
+[ > Enclosure selection ]
 
-# Re-implement system.images to dispatch invocations directly.
-# Isolate fault.kernel and fault.web into a new corpus (volatile?)
+Range selection support for quotations and parenthetical.
 
-Kernel is fairly experimental. If other projects become well defined, isolation
-may be necessary.
+[ > Wayland Support ]
 
-[ > Coverage Reporting ]
+Primarily cairo EGL usage and control mappings.
 
-- Implement reporting annotations for summary data (test fates and coverage percentages).
+[ > SDL Support ]
+
+Primarily SDL_Surface usage and control mappings?
+
+- &<https://www.cairographics.org/SDL/>
+
+[ > macOS Double Buffer Performance ]
+
+Optimize double buffer usage of macos-cocoa.
+
+macos-cocoa currently implements a double buffer by performing a full copy back to the off screen
+buffer in order to bring it up to date. When changes are large, a full memcpy may be more efficient,
+but when they're small, it is likely, or at least possible, that patching the stale buffer would
+have superior performance.
+
+[ Factored Projects ]
+
+[ > Monomial-1 Project Protocol ]
+
+Implement monomial-1 project protocol.
+
+When projects are very simple, it may be the case that only one factor is being published.
+Requiring project content demands superfluous identities to be created and referenced in
+such cases.
+
+Monomial projects are single factor path abstractions with multiple types that can be addressed
+directly in cases of ambiguity.
 
 [ > Source Reduced Project Protocol ]
 
 FIP for integrated projects allowing sources to be reduced. .types/variants#factor-type/factor-name
 
-[ > Terminal ]
+[ Organization ]
 
-- Better span control for ' " () [] {}.
-- Navigation: Jump to Next/Previous indentation increment
-- Sole Hold (clipboard like thing) annotation primarily for supporting horizontal moves.
-- Wayland support. (pango + cairo, mostly input handling changes from xcb)
-- SDL support. (pango + cairo, mostly input handling changes from xcb)
+[ > python/kernel Isolation ]
 
-[ > Kernel Transactions ]
+Kernel is fairly experimental. If other projects become well defined, isolation
+into its own corpus may be necessary.
 
-- Isolate transaction management from transaction contexts by splitting purpose:
-	. two (transaction) Context subclasses, Dispatch and Mechanism. Dispatch is the manager
-	. class that exclusively responds to transaction completion events and Mechanism dispatches
-	. processor networks.
+[ > python/web Integration into python/kernel ]
 
-[ > Python ]
+If kernel is ever isolated into another corpus, python/web is going with it.
 
-/fault.transcript/
-	- For transfers, use usage to show the rate and processed for the aggregate size.
-	- Rewrite status display to show top-N process based on recent activity.
-		. A screen full of counters is too much information, so focus on giving additional
-		. details up to some limit.
-	
-/fault.test/
-	- Alter fault.test.analyze to unconditionally track contentions and absurdities (errors)
-		. For performance tests, this count field will be used for iterations. This leaves
-		. inner duration as the last new field.
-	
-/fault.range/
-	- Use RangeMapping to implement element identification using the syntax area.
-		. The root elements form the first layer; a match causes descent and pushes the first element
-		. into the path allowing all container to be identified when resolving an element.
-	
-/system/
-	- Add system text encoding to text.
-	- Change f.system.execution interfaces to be named after the device they read from:
-		. execution.stdout(inv) -> stdout, execution.stderr(inv) -> stderr.
-		. execution.statuscode(inv) -> exit_code
-		. Where stdout captures stderr in parallel and reports the image on non-zero exit.
-		. Where stderr disables stdout and defaults stdin to /dev/null.
-	
-/security/
-	- Integrate into python/system and python/kernel; no plans outside of transport security.
-	- rewrite MemoryError's into something appropriate for Transports.
-	- Improve openssl X509 introspection.
-	- select next protocol support.
-	- Transport security allocation parameters: security-context-id and role identifier.
-		. Disposition is defined by the stored context.
-	
+[ > fault.security Split ]
+
+Integrate into python/system and python/kernel. While no building of extensions modules is
+performed in security, the C code will be better positioned with other C code.
+
+[ Status Frames ]
+
+[ > Sub-units for transaction progress ]
+
+Currently, this is primarily for tests for keeping track of contentions, but should
+work well in general.
+
+[ Documentation Publication ]
+
+[ > Test and Coverage Reporting ]
+
+Some coverage reporting is performed, but test reports are not currently joined.
+
